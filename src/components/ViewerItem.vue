@@ -25,8 +25,7 @@
 	import sideUtility from './SideUtility.vue';
 
   onMounted(() => {
-    console.log('mounted')
-    console.log(props.data[currentPage.value[0]].stateArray[currentPage.value[1]].queue)
+    console.log(props.data.length)
   })
 
 	const props = defineProps({
@@ -47,6 +46,9 @@
     return props.data[currentPage.value[0]].PCLoopIndicator
   })
 
+  /*
+   * Onclick events
+   */
   function reset() {
     currentPage.value = [0, 0]
   }
@@ -58,7 +60,6 @@
     } else {
       currentPage.value[1] = 0
     }
-    console.log(currentPage.value)
   }
 
   function backPiece() {
@@ -68,7 +69,6 @@
       currentPage.value[0] -= 1
       currentPage.value[1] = props.data[currentPage.value[0]].stateArray.length - 1
     }
-    console.log(currentPage.value)
   }
 
   function forwardPiece() {
@@ -78,7 +78,6 @@
       currentPage.value[0] += 1
       currentPage.value[1] = 0
     }
-    console.log(currentPage.value)
   }
   function forwardPC() {
     if (currentPage.value[0] < props.data.length - 1) {
@@ -87,7 +86,10 @@
     } else {
       currentPage.value[1] = props.data[currentPage.value[0]].stateArray.length - 1
     }
-    console.log(currentPage.value)
+  }
+
+  function openOptions() {
+    console.log('open options')
   }
 
 </script>

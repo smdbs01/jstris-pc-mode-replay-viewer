@@ -4,7 +4,7 @@
       Jstris PC Mode Replay Viewer
     </h1>
 
-    <ViewerItem class="min-w-80 sm:w-135 lg:w-220 min-h-[600px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length" :data="replayObj"/>
+    <ViewerItem class="min-w-80 sm:w-135 lg:w-220 min-h-[700px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length" :data="replayObj"/>
     <FileUploader @replay-uploaded="loadReplay"/>
 
   </main>

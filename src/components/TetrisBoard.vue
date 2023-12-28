@@ -1,21 +1,36 @@
 <template>
   <div class="w-[70%] h-[95%] flex flex-col justify-between items-center relative">
-    <!-- Hold and Queue, + board if screen width is large-->
+    <!-- Hold and Queue + LG Board-->
     <div class="w-full h-[70%] lg:h-full flex justify-between">
       <!-- Hold + PC # -->
-      <div>
-        <TetriminoItem class="w-28 h-28 b-indigo-4 b-2 b-r-outset b-b-outset" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
-        <div class="text-indigo-2 pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
+      <div class="w-30 h-full flex flex-col justify-between relative">
+        <div>
+          <div class="h-21 w-30 relative">
+            <TetriminoItem class="pr-2 pb-2 b-indigo-2 b-2 b-r-solid b-b-solid xs:absolute xs:pos-right-2" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
+          </div>
+          
+          <div class="text-indigo-2 pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
+        </div>
+        
+        <!-- XS: Current piece -->
+        <div class="w-28 relative sm:hidden">
+          <TetriminoItem class="sm:hidden absolute pos-left-2 pos-bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
+        </div>
       </div>
       
       
-      <!-- Current when sm screen-->
-      <div class="w-28 h-full flex flex-col justify-end">
-        <TetriminoItem skin="purecolor" :type="computedCurrentPiece" />
+      <!-- SM: Current piece -->
+      <div class="w-28 h-full flex-col justify-end relative hidden sm:flex lg:hidden">
+        <TetriminoItem class="absolute pos-right-7" skin="purecolor" :type="computedCurrentPiece" />
       </div>
 
-      <!-- Board when lg screen -->
-      <div class="w-70 h-full hidden lg:flex lg:flex-col lg:justify-end">
+      <!-- LG: Board -->
+      <div class="w-70 h-full b-1 b-indigo-2 b-solid b-t-none hidden lg:flex lg:flex-col lg:justify-end lg:items-center">
+        <!-- LG: Current -->
+        <div class="w-28 flex flex-col justify-end relative hidden lg:block">
+          <TetriminoItem class="absolute pos-bottom-30" skin="purecolor" :type="computedCurrentPiece" />
+        </div>
+
         <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
           <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
         </div>
@@ -27,8 +42,8 @@
       </div>
     </div>
 
-    <!-- Partial board when sm screen -->
-    <div class="w-70 h-[25%] mt-2 b-gray b-solid b-t-none flex flex-col justify-end xs:absolute xs:pos-left-0 xs:bottom-0 lg:hidden">
+    <!-- XS: Board -->
+    <div class="w-70 h-[25%] mt-2 b-1 b-indigo-2 b-solid b-t-none flex flex-col justify-end xs:absolute xs:pos-left-0 xs:bottom-0 lg:hidden">
       <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
         <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
       </div>
@@ -49,8 +64,7 @@
 	})
 
   onMounted(() => {
-    console.log('mounted')
-    console.log(props.queue)
+    
   })
 
   const suffix = ["0", "st", "nd", "rd", "th"]
