@@ -2,15 +2,19 @@
   <div class="w-[70%] h-[95%] flex flex-col justify-between items-center relative">
     <!-- Hold and Queue, + board if screen width is large-->
     <div class="w-full h-[70%] lg:h-full flex justify-between">
-      <!-- Hold -->
-      <TetriminoItem class="w-28 h-28" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
+      <!-- Hold + PC # -->
+      <div>
+        <TetriminoItem class="w-28 h-28 b-indigo-4 b-2 b-r-outset b-b-outset" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
+        <div class="text-indigo-2 pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
+      </div>
       
-      <!-- Current -->
+      
+      <!-- Current when sm screen-->
       <div class="w-28 h-full flex flex-col justify-end">
         <TetriminoItem skin="purecolor" :type="computedCurrentPiece" />
       </div>
 
-      <!-- Board if screen width is large -->
+      <!-- Board when lg screen -->
       <div class="w-70 h-full hidden lg:flex lg:flex-col lg:justify-end">
         <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
           <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
@@ -23,7 +27,7 @@
       </div>
     </div>
 
-    <!-- Partial board if screen width is small -->
+    <!-- Partial board when sm screen -->
     <div class="w-70 h-[25%] mt-2 b-gray b-solid b-t-none flex flex-col justify-end xs:absolute xs:pos-left-0 xs:bottom-0 lg:hidden">
       <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
         <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
@@ -49,13 +53,18 @@
     console.log(props.queue)
   })
 
+  const suffix = ["0", "st", "nd", "rd", "th"]
+  const computedLoopIndicator = computed(() => {
+    return props.PCLoopIndicator + suffix[Math.min(props.PCLoopIndicator, 4)]
+  })
+
   const hasHold = computed(() => {
     return props.queue.length === 7
   })
 
   const computedHold = computed(() => {
     if (!hasHold.value) return
-    return props.queue[1]
+    return props.queue[0]
   })
 
   const computedQueue = computed(() => {
@@ -71,7 +80,7 @@
   })
 
   const computedCurrentPiece = computed(() => {
-    return props.queue[0]
+    return hasHold.value ? props.queue[1] : props.queue[0]
   })
 
   const computedBoard = computed(() => {

@@ -41,7 +41,5 @@ import { computed } from 'vue';
 </script>
 
 <style scoped>
-.flex div {
-  border: none;
-}
+
 </style>

@@ -6,10 +6,14 @@
 		</div>
 
 		<footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
-			<div class="">
-				<ButtonItem v-for="item in buttonList" :key="item.icon" :iconClass="item.icon" :emitEvent="item.event" />
-			</div>
-			<ButtonItem iconClass="i-ph-option" emitEvent="option" />
+      <div class="">
+        <ButtonItem icon-class="i-ph-rewind" @click="reset()"/>
+        <ButtonItem icon-class="i-ph-skip-back" @click="backPC()"/>
+        <ButtonItem icon-class="i-ph-arrow-left" @click="backPiece()"/>
+        <ButtonItem icon-class="i-ph-arrow-right" @click="forwardPiece()"/>
+        <ButtonItem icon-class="i-ph-skip-forward" @click="forwardPC()"/>
+      </div>
+			<ButtonItem iconClass="i-ph-option" @click="openOptions()"/>
 		</footer>
   </div>
 </template>
@@ -43,28 +47,48 @@
     return props.data[currentPage.value[0]].PCLoopIndicator
   })
 
-	const buttonList = [
-		{
-			icon: 'i-ph-rewind',
-			event: 'reset'
-		},
-		{
-			icon: 'i-ph-skip-back',
-			event: 'skip-back'
-		},
-		{
-			icon: 'i-ph-arrow-left',
-			event: 'left'
-		},
-		{
-			icon: 'i-ph-arrow-right',
-			event: 'right'
-		},
-		{
-			icon: 'i-ph-skip-forward',
-			event: 'skip-forward'
-		},
-	]
+  function reset() {
+    currentPage.value = [0, 0]
+  }
+
+  function backPC() {
+    if (currentPage.value[0] > 0) {
+      currentPage.value[0] -= 1
+      currentPage.value[1] = 0
+    } else {
+      currentPage.value[1] = 0
+    }
+    console.log(currentPage.value)
+  }
+
+  function backPiece() {
+    if (currentPage.value[1] > 0) {
+      currentPage.value[1] -= 1
+    } else if (currentPage.value[0] > 0) {
+      currentPage.value[0] -= 1
+      currentPage.value[1] = props.data[currentPage.value[0]].stateArray.length - 1
+    }
+    console.log(currentPage.value)
+  }
+
+  function forwardPiece() {
+    if (currentPage.value[1] < props.data[currentPage.value[0]].stateArray.length - 1) {
+      currentPage.value[1] += 1
+    } else if (currentPage.value[0] < props.data.length - 1) {
+      currentPage.value[0] += 1
+      currentPage.value[1] = 0
+    }
+    console.log(currentPage.value)
+  }
+  function forwardPC() {
+    if (currentPage.value[0] < props.data.length - 1) {
+      currentPage.value[0] += 1
+      currentPage.value[1] = 0
+    } else {
+      currentPage.value[1] = props.data[currentPage.value[0]].stateArray.length - 1
+    }
+    console.log(currentPage.value)
+  }
 
 </script>
 
