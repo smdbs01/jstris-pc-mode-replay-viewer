@@ -14,6 +14,7 @@
   import { ref } from 'vue'
 
   const file = ref("")
+  const emit = defineEmits(['replay-uploaded'])
 
   const pieceTable = {
     'I': 2,
@@ -40,6 +41,7 @@
       const data = JSON.parse(e.target.result)
       if (validateObj(data)) {
         file.value = f.name
+        emit('replay-uploaded', data)
       } else {
         console.log("invalid json")
       }

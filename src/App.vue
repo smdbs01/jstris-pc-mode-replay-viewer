@@ -4,10 +4,8 @@
       Jstris PC Mode Replay Viewer
     </h1>
 
-    <ViewerItem />
-    <FileUploader />
-
-    
+    <ViewerItem v-if="replayObj.length" :data="replayObj"/>
+    <FileUploader @replay-uploaded="loadReplay"/>
 
   </main>
 </template>
@@ -17,17 +15,11 @@
   import ViewerItem from './components/ViewerItem.vue'
   import FileUploader from './components/FileUploader.vue'
 
-  const pieceTable = {
-    'I': 2,
-    'O': 3,
-    'T': 5,
-    'L': 7,
-    'J': 11,
-    'S': 13,
-    'Z': 17,
-    'N': 19
-  }
+  const replayObj = ref([])
 
+  function loadReplay (obj) {
+    replayObj.value = obj
+  }
 
 </script>
 
