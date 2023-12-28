@@ -4,7 +4,7 @@
       Jstris PC Mode Replay Viewer
     </h1>
 
-    <ViewerItem class="sm:w-90 md:w-150 h-[80%]" v-if="replayObj.length" :data="replayObj"/>
+    <ViewerItem class="w-60 sm:w-135 lg:w-220 h-[80%] rounded-xl shadow-md" v-if="replayObj.length" :data="replayObj"/>
     <FileUploader @replay-uploaded="loadReplay"/>
 
   </main>
@@ -23,6 +23,10 @@
 
 </script>
 
-<style scoped>
-
+<style>
+  * {
+    font-family: Helvetica, sans-serif, Arial;
+    /* debug */
+    /* border: red 1px solid; */
+  }
 </style>

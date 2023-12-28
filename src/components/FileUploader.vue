@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center mt-4">
-    <label class="p-2 hover:bg-teal-600 bg-teal-700 rounded-xl text-gray-200 hover:cursor-pointer">
-      Upload a Replay Json
+    <label class="p-2 hover:bg-teal-600 b-solid b-teal-600 rounded-xl hover:text-gray-200 text-teal-600 hover:cursor-pointer transition-all duration-100">
+      {{ label }}
       <input class="hidden" type="file" accept="application/json" @change="addFile" />
     </label>
 
@@ -15,6 +15,7 @@
 
   const file = ref("")
   const emit = defineEmits(['replay-uploaded'])
+  const label = ref("Upload a Replay Json")
 
   const pieceTable = {
     'I': 2,
@@ -44,6 +45,10 @@
         emit('replay-uploaded', data)
       } else {
         console.log("invalid json")
+        label.value = "Invalid Json"
+        setTimeout(() => {
+          label.value = "Upload a Replay Json"
+        }, 2000);
       }
 
     }

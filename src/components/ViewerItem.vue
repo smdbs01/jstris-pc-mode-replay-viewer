@@ -1,11 +1,12 @@
 <template>
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
-		<div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex">
-
+		<div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex justify-between items-center">
+			<TetrisBoard />
+			<sideUtility />
 		</div>
 
 		<footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
-			<div>
+			<div class="">
 				<ButtonItem v-for="item in buttonList" :key="item.icon" :iconClass="item.icon" :emitEvent="item.event" />
 			</div>
 			<ButtonItem iconClass="i-ph-option" emitEvent="option" />
@@ -14,7 +15,14 @@
 </template>
 
 <script setup>
+	import { onMounted} from 'vue';
 	import ButtonItem from './ButtonItem.vue';
+	import TetrisBoard from './TetrisBoard.vue';
+	import sideUtility from './SideUtility.vue';
+
+  onMounted(() => {
+    console.log('mounted')
+  })
 
 	defineProps({
 		data: Object
