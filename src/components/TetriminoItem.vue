@@ -1,8 +1,8 @@
 <template>
-  <div class="w-20 h-10 flex flex-col">
-    <div v-for="row, index in minos" :key="index" class="w-20 h-5 flex">
-      <div v-for="mino, index in row" :key="index" class="w-5 h-5">
-        <div v-if="mino" class="w-5 h-5 shadow" :style="{ backgroundImage: 'url(src/assets/imgs/skins/' + skin + '/' + type + '.png)'}"></div>
+  <div class="w-28 h-14 flex flex-col">
+    <div v-for="row, index in minos" :key="index" class="w-28 h-7 flex">
+      <div v-for="mino, index in row" :key="index" class="w-7 h-7">
+        <MinoItem v-if="mino" :skin="skin" :type="type" />
       </div>
     </div>
   </div>
@@ -10,6 +10,7 @@
 
 <script setup>
 import { computed } from 'vue';
+  import MinoItem from './MinoItem.vue';
 
   const props = defineProps({
     skin: String,
@@ -40,4 +41,7 @@ import { computed } from 'vue';
 </script>
 
 <style scoped>
+.flex div {
+  border: none;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[30%] h-[95%]">
+  <div class="w-[25%] h-[95%]">
 
   </div>
 </template>

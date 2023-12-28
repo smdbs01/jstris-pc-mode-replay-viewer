@@ -1,7 +1,7 @@
 <template>
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
 		<div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex justify-between items-center">
-			<TetrisBoard />
+			<TetrisBoard :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator"/>
 			<sideUtility />
 		</div>
 
@@ -15,18 +15,33 @@
 </template>
 
 <script setup>
-	import { onMounted} from 'vue';
+	import { ref, computed, onMounted } from 'vue';
 	import ButtonItem from './ButtonItem.vue';
 	import TetrisBoard from './TetrisBoard.vue';
 	import sideUtility from './SideUtility.vue';
 
   onMounted(() => {
     console.log('mounted')
+    console.log(props.data[currentPage.value[0]].stateArray[currentPage.value[1]].queue)
   })
 
-	defineProps({
+	const props = defineProps({
 		data: Object
 	})
+
+  const currentPage = ref([0, 4])
+
+  const board = computed(() => {
+    return props.data[currentPage.value[0]].stateArray[currentPage.value[1]].board
+  })
+
+  const queue = computed(() => {
+    return props.data[currentPage.value[0]].stateArray[currentPage.value[1]].queue
+  })
+
+  const PCLoopIndicator = computed(() => {
+    return props.data[currentPage.value[0]].PCLoopIndicator
+  })
 
 	const buttonList = [
 		{
