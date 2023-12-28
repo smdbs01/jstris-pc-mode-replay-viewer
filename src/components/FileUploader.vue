@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col items-center mt-4">
-    <label class="p-2 bg-teal-700 rounded-xl text-gray-200">
+    <label class="p-2 hover:bg-teal-600 bg-teal-700 rounded-xl text-gray-200 hover:cursor-pointer">
       Upload a Replay Json
       <input class="hidden" type="file" accept="application/json" @change="addFile" />
     </label>
 
     <!--To be hidden-->
-    <div class="ml-2">{{ file }}</div>
+    <div v-if="file" class="mt-2 text-xs font-500">{{ file }}</div>
   </div>
 </template>
 
