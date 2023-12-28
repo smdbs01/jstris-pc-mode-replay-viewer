@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col items-center mt-4">
-    <label class="p-2 hover:bg-teal-600 b-solid b-teal-600 rounded-xl hover:text-gray-200 text-teal-600 hover:cursor-pointer transition-all duration-100">
+    <label tabindex="0" class="p-2 focus:outline-none focus:bg-teal-600 hover:bg-teal-600 b-solid b-teal-600 rounded-xl focus:text-gray-200 hover:text-gray-200
+     text-teal-600 hover:cursor-pointer transition-all duration-100">
       {{ label }}
-      <input class="hidden" type="file" accept="application/json" @change="addFile" />
+      <input class="hidden " type="file" accept="application/json" @change="addFile" />
     </label>
 
-    <!--To be hidden-->
     <div v-if="file" class="mt-2 text-xs font-500">{{ file }}</div>
   </div>
 </template>

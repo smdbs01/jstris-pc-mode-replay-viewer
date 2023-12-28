@@ -1,18 +1,23 @@
 <template>
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
 		<div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex justify-between items-center">
-			<TetrisBoard :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator"/>
-			<sideUtility />
+			<TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator"/>
+			<sideUtility class="hidden sm:flex"/>
 		</div>
 
 		<footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
       <div class="">
-        <ButtonItem icon-class="i-ph-rewind" @click="reset()"/>
-        <ButtonItem icon-class="i-ph-skip-back" @click="backPC()"/>
-        <ButtonItem icon-class="i-ph-arrow-left" @click="backPiece()"/>
-        <ButtonItem icon-class="i-ph-arrow-right" @click="forwardPiece()"/>
-        <ButtonItem icon-class="i-ph-skip-forward" @click="forwardPC()"/>
+        <ButtonItem icon-class="i-ph-rewind" class="mr-2" @click="reset()"/>
+        <ButtonItem icon-class="i-ph-skip-back" class="mr-2" @click="backPC()"/>
+        <ButtonItem icon-class="i-ph-arrow-left" class="mr-2" @click="backPiece()"/>
+        <ButtonItem icon-class="i-ph-arrow-right" class="mr-2" @click="forwardPiece()"/>
+        <ButtonItem icon-class="i-ph-skip-forward" class="mr-2" @click="forwardPC()"/>
       </div>
+
+      <div class="flex items-center text-teal-600">
+        <input type="number" class="w-4 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-cool-gray-300 focus:bg-cool-gray-300 hover:text-gray-700 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100" :value="currentPage[0] + 1" @input="updatePage($event.target.value)"/> / {{ props.data.length }}
+      </div>
+
 			<ButtonItem iconClass="i-ph-option" @click="openOptions()"/>
 		</footer>
   </div>
@@ -45,6 +50,17 @@
   const PCLoopIndicator = computed(() => {
     return props.data[currentPage.value[0]].PCLoopIndicator
   })
+
+  function updatePage(newPage) {
+    if (newPage > 0 && newPage <= props.data.length) {
+      currentPage.value[0] = newPage - 1
+      currentPage.value[1] = 0
+    } else if (newPage <= 0){
+      currentPage.value[0] = 0
+    } else {
+      currentPage.value[0] = props.data.length - 1
+    }
+  }
 
   /*
    * Onclick events
@@ -95,5 +111,13 @@
 </script>
 
 <style scoped>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
 </style>

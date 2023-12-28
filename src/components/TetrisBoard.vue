@@ -1,7 +1,7 @@
 <template>
-  <div class="w-[70%] h-[95%] flex flex-col justify-between items-center relative">
+  <div class="flex flex-col justify-between items-center relative">
     <!-- Hold and Queue + LG Board-->
-    <div class="w-full h-[70%] lg:h-full flex justify-between">
+    <div class="w-full h-[70%] ml-4 lg:h-full flex justify-between">
       <!-- Hold + PC # -->
       <div class="w-30 h-full flex flex-col justify-between relative">
         <div>
@@ -14,14 +14,14 @@
         
         <!-- XS: Current piece -->
         <div class="w-28 relative sm:hidden">
-          <TetriminoItem class="sm:hidden absolute pos-left-2 pos-bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
+          <TetriminoItem class="sm:hidden absolute pos-left-21 pos-bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
         </div>
       </div>
       
       
       <!-- SM: Current piece -->
       <div class="w-28 h-full flex-col justify-end relative hidden sm:flex lg:hidden">
-        <TetriminoItem class="absolute pos-right-7" skin="purecolor" :type="computedCurrentPiece" />
+        <TetriminoItem class="absolute pos-right-7 pos-bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
       </div>
 
       <!-- LG: Board -->
