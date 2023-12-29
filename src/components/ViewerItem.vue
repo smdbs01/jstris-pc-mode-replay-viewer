@@ -15,7 +15,7 @@
       </div>
 
       <div class="flex items-center text-teal-600">
-        <input type="number" class="w-4 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-cool-gray-300 focus:bg-cool-gray-300 hover:text-gray-700 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100" :value="currentPage[0] + 1" @input="updatePage($event.target.value)"/> / {{ props.data.length }}
+        <input type="number" class="w-7 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-cool-gray-300 focus:bg-cool-gray-300 hover:text-gray-700 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100" :value="currentPage[0] + 1" @input="updatePage($event.target.value)"/> / {{ props.data.length }}
       </div>
 
 			<ButtonItem iconClass="i-ph-option" @click="openOptions()"/>
@@ -30,7 +30,7 @@
 	import sideUtility from './SideUtility.vue';
 
   onMounted(() => {
-    console.log(props.data.length)
+    console.log(props.data)
   })
 
 	const props = defineProps({

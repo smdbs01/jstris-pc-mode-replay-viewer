@@ -6,16 +6,15 @@
       <input class="hidden " type="file" accept="application/json" @change="addFile" />
     </label>
 
-    <div v-if="file" class="mt-2 text-xs font-500">{{ file }}</div>
+    
   </div>
 </template>
 
 <script setup>
   import { ref } from 'vue'
 
-  const file = ref("")
   const emit = defineEmits(['replay-uploaded'])
-  const label = ref("Upload a Replay Json")
+  const label = ref("upload a replay json")
 
   const pieceTable = {
     'I': 2,
@@ -41,7 +40,6 @@
     reader.onload = (e) => {
       const data = JSON.parse(e.target.result)
       if (validateObj(data)) {
-        file.value = f.name
         emit('replay-uploaded', data)
       } else {
         console.log("invalid json")
@@ -50,7 +48,6 @@
           label.value = "Upload a Replay Json"
         }, 2000);
       }
-
     }
   }
 

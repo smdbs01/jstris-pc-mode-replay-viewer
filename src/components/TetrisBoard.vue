@@ -6,7 +6,7 @@
       <div class="w-30 h-full flex flex-col justify-between relative">
         <div>
           <div class="h-21 w-30 relative">
-            <TetriminoItem class="pr-2 pb-2 b-indigo-2 b-2 b-r-solid b-b-solid xs:absolute xs:pos-right-2" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
+            <TetriminoItem class="pr-2 pb-2 xs:absolute xs:pos-right-2" skin="purecolor" :type="computedHold" :class="{'hidden': !hasHold}"/>
           </div>
           
           <div class="text-indigo-2 pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>

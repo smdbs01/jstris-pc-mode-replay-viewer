@@ -5,8 +5,10 @@
     </h1>
 
     <ViewerItem class="min-w-80 sm:w-135 lg:w-220 min-h-[700px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length" :data="replayObj"/>
-    <FileUploader @replay-uploaded="loadReplay"/>
-
+    <div class="w-sm mt-4 flex justify-between">
+      <FileUploader @replay-uploaded="loadReplay"/>
+      <ReplayCodeUploader @replay-uploaded="loadReplay"/>
+    </div>
   </main>
 </template>
 
@@ -14,6 +16,7 @@
   import { ref } from 'vue'
   import ViewerItem from './components/ViewerItem.vue'
   import FileUploader from './components/FileUploader.vue'
+  import ReplayCodeUploader from './components/ReplayCodeUploader.vue'
 
   const replayObj = ref([])
 
@@ -28,7 +31,6 @@
     font-family: Helvetica, sans-serif, Arial;
     /* debug */
     /*
-    
     outline: red 1px solid;
     */
   }
