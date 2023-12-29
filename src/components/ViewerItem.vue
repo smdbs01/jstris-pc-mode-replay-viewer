@@ -1,8 +1,8 @@
 <template>
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
-    <div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex justify-between items-center">
+    <div class="w-[90%] h-[90%] mx-4 mt-4 py-2 flex justify-between items-center">
       <TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator" />
-      <sideUtility class="hidden sm:flex" :pages="pageArray" :currentPage="currentPage[0]" />
+      <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0]+1" />
     </div>
 
     <footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
@@ -41,12 +41,17 @@ const props = defineProps({
 
 const currentPage = ref([0, 0])
 
-const pageArray = computed(() => {
-  const ret = []
+const loopArrays = computed(() => {
+  const ret = {}
   for (let i = 0; i < props.data.length; i++) {
-    ret.push({
-      loop: props.data[i].PCLoopIndicator,
-      isActive: i === currentPage.value[0]
+    const loop = props.data[i].PCLoopIndicator
+    if (ret[loop] === undefined) {
+      ret[loop] = []
+    }
+
+    ret[loop].push({
+      name: i + 1,
+      initialQueue: props.data[i].stateArray[0].queue,
     })
   }
   return ret

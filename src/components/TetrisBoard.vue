@@ -9,10 +9,9 @@
             <TetriminoItem class="pr-2 pb-2 xs:absolute xs:pos-right-2" skin="purecolor" :type="computedHold"
               :class="{ 'hidden': !hasHold }" />
           </div>
-
-          <div class="text-white pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
+          <div class="text-teal-400 pl-7 pt-7 font-500 text-3xl sm:hidden">{{ computedLoopIndicator }}</div>
         </div>
-
+        
         <!-- XS: Current piece -->
         <div class="w-28 relative sm:hidden">
           <TetriminoItem class="sm:hidden absolute pos-left-21 pos-bottom-[-1rem]" skin="purecolor"
@@ -33,6 +32,7 @@
           <TetriminoItem class="absolute pos-bottom-30" skin="purecolor" :type="computedCurrentPiece" />
         </div>
 
+        <!-- LG: Board -->
         <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
           <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
         </div>
