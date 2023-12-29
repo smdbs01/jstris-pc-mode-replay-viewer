@@ -2,7 +2,7 @@
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
     <div class="w-[90%] h-[90%] mx-4 mt-4 p-2 flex justify-between items-center">
       <TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator" />
-      <sideUtility class="hidden sm:flex" />
+      <sideUtility class="hidden sm:flex" :pages="pageArray" :currentPage="currentPage[0]" />
     </div>
 
     <footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
@@ -16,7 +16,7 @@
 
       <div class="flex items-center text-teal-600">
         <input type="number"
-          class="w-7 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-cool-gray-300 focus:bg-cool-gray-300 hover:text-gray-700 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100"
+          class="w-7 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-cool-gray-300 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100"
           :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> / {{ props.data.length }}
       </div>
 
@@ -40,6 +40,17 @@ const props = defineProps({
 })
 
 const currentPage = ref([0, 0])
+
+const pageArray = computed(() => {
+  const ret = []
+  for (let i = 0; i < props.data.length; i++) {
+    ret.push({
+      loop: props.data[i].PCLoopIndicator,
+      isActive: i === currentPage.value[0]
+    })
+  }
+  return ret
+})
 
 const board = computed(() => {
   return props.data[currentPage.value[0]].stateArray[currentPage.value[1]].board

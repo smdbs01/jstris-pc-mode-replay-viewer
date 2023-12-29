@@ -6,21 +6,23 @@
         {{ label }}
       </label>
       <!-- Shader -->
-      <div v-if="isInputWindowOpened"
-        class="w-[100vw] h-[100vh] fixed z-50 pos-top-0 pos-left-0 bg-gray-800 bg-opacity-50" @click="closePopup()"></div>
-      <div v-if="isInputWindowOpened"
-        class="w-[80vw] h-[40vh] p-4 b-teal-500 b-solid bg-gray-800 rounded-xl flex flex-col items-center justify-start fixed z-50 pos-top-1/4 pos-left-[6vw]">
-        <textarea
-          class="w-[95%] h-[80%] bg-gray-800 text-gray-300 rounded-xl mx-2 p-2 focus:outline-none focus:bg-gray-700 focus:text-gray-200"
-          placeholder="Paste your replay link or replay code, examples: &#10;&#10;https://jstris.jezevec10.com/replay/48791348&#10;or&#10;N4IgxiBcoG5QzAOngGhAZwPYDMAuARAJ0wAcBJAEygCY0BzAQwFsBTAZVwcNygEYA2ACyD4ADgAMAVkm9Jg2iEasAog......"
-          @keydown.enter="addFile()" v-model="file"></textarea>
-        <div class="w-[95%] mt-4 flex justify-around">
-          <button
-            class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 rounded-xl mx-2 p-2 appearance-none focus:outline-none focus:bg-gray-700 focus:text-gray-200"
-            @click="closePopup()">Close</button>
-          <button
-            class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 rounded-xl mx-2 p-2 appearance-none focus:outline-none focus:bg-gray-700 focus:text-gray-200"
-            @click="addFile()">Upload</button>
+      <div v-if="isInputWindowOpened" class="w-full h-full flex flex-col items-center absolute pos-top-0 pos-left-0">
+        <div class="w-[100vw] h-[100vh] fixed z-50 pos-top-0 pos-left-0 bg-gray-800 bg-opacity-80" @click="closePopup()">
+        </div>
+        <div
+          class="w-[80vw] max-w-xl h-[40vh] p-4 z-50 b-1 b-solid b-gray-700 bg-gray-800 rounded-xl flex flex-col shadow-md items-center justify-start relative pos-top-1/4">
+          <textarea
+            class="w-[95%] h-[80%] bg-gray-800 text-gray-300 rounded-xl mx-2 p-2 resize-none focus:outline-none focus:bg-blue-gray-700 focus:text-gray-200"
+            placeholder="Paste your replay link or replay code, examples: &#10;&#10;https://jstris.jezevec10.com/replay/48791348&#10;or&#10;N4IgxiBcoG5QzAOngGhAZwPYDMAuARAJ0wAcBJAEygCY0BzAQwFsBTAZVwcNygEYA2ACyD4ADgAMAVkm9Jg2iEasAog......"
+            @keydown.enter="addFile()" v-model="file"></textarea>
+          <div class="w-[95%] mt-4 flex justify-around">
+            <button
+              class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 b-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
+              @click="closePopup()">Close</button>
+            <button
+              class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 b-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
+              @click="addFile()">Upload</button>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +52,7 @@ function addFile() {
 function invalid() {
   label.value = "Invalid Input"
   setTimeout(() => {
-    label.value = "Upload a Replay Code"
+    label.value = "upload a replay code"
   }, 2000)
 }
 

@@ -10,7 +10,7 @@
               :class="{ 'hidden': !hasHold }" />
           </div>
 
-          <div class="text-indigo-2 pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
+          <div class="text-white pl-7 pt-7 font-400 text-3xl">{{ computedLoopIndicator }}</div>
         </div>
 
         <!-- XS: Current piece -->

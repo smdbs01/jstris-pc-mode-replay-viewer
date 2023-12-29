@@ -30,6 +30,7 @@ function loadReplay(obj) {
 <style>
 * {
   font-family: Helvetica, sans-serif, Arial;
+
   /* debug */
   /*
     outline: red 1px solid;
