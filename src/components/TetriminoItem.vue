@@ -10,36 +10,34 @@
 
 <script setup>
 import { computed } from 'vue';
-  import MinoItem from './MinoItem.vue';
+import MinoItem from './MinoItem.vue';
 
-  const props = defineProps({
-    skin: String,
-    type: String
-  })
+const props = defineProps({
+  skin: String,
+  type: String
+})
 
-  const minos = computed(() => {
-    switch (props.type) {
-      case "T":
-        return [[0, 1, 0, 0], [1, 1, 1, 0] ]
-      case "O":
-        return [[0, 1, 1, 0], [0, 1, 1, 0] ]
-      case "I":
-        return [[0, 0, 0, 0], [1, 1, 1, 1] ]
-      case "L":
-        return [[0, 0, 1, 0], [1, 1, 1, 0] ]
-      case "J":
-        return [[1, 0, 0, 0], [1, 1, 1, 0] ]
-      case "S":
-        return [[0, 1, 1, 0], [1, 1, 0, 0] ]
-      case "Z":
-        return [[1, 1, 0, 0], [0, 1, 1, 0] ]
-      
-    }
-    return []
-  })
+const minos = computed(() => {
+  switch (props.type) {
+    case "T":
+      return [[0, 1, 0, 0], [1, 1, 1, 0]]
+    case "O":
+      return [[0, 1, 1, 0], [0, 1, 1, 0]]
+    case "I":
+      return [[0, 0, 0, 0], [1, 1, 1, 1]]
+    case "L":
+      return [[0, 0, 1, 0], [1, 1, 1, 0]]
+    case "J":
+      return [[1, 0, 0, 0], [1, 1, 1, 0]]
+    case "S":
+      return [[0, 1, 1, 0], [1, 1, 0, 0]]
+    case "Z":
+      return [[1, 1, 0, 0], [0, 1, 1, 0]]
+
+  }
+  return []
+})
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
