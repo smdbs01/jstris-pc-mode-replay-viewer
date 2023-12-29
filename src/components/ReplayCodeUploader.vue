@@ -28,8 +28,6 @@
 </template>
 
 <script setup>
-
-import axios from 'axios'
 import { ref } from 'vue'
 import { decoder } from 'tetris-fumen'
 import { compressToEncodedURIComponent } from 'lz-string'
@@ -49,6 +47,13 @@ function addFile() {
   closePopup()
 }
 
+function invalid() {
+  label.value = "Invalid Input"
+  setTimeout(() => {
+    label.value = "Upload a Replay Code"
+  }, 2000)
+}
+
 function parseFile(txt) {
   // Check if it is a url
   // Credits: https://github.com/cringemoment/
@@ -56,18 +61,12 @@ function parseFile(txt) {
   if (txt.indexOf(target) >= 0) {
     const parts = txt.split("/")
     if (parts.length < 5) {
-      label.value = "Invalid Url"
-      setTimeout(() => {
-        label.value = "Upload a Replay Code"
-      }, 2000);
+      invalid()
       return
     }
 
     if (parts[3] != "replay" || !parts[2].endsWith(target)) {
-      label.value = "Invalid Url"
-      setTimeout(() => {
-        label.value = "Upload a Replay Code"
-      }, 2000);
+      invalid()
       return
     }
 
@@ -77,21 +76,29 @@ function parseFile(txt) {
     }
 
     const url = "https://" + parts[2] + "/replay/data?id=" + id + "&type=0"
-    axios.get(url).then((response) => {
-      const comp = compressToEncodedURIComponent(JSON.stringify(response.data))
-
-      fetch(`https://fumen.tstman.net/jstris`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: `replay=${comp}`
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          parseFumen(data.fumen)
+    fetch(url).then((response) => {
+      if (!response.ok) {
+        invalid()
+      }
+      response.text().then((text) => {
+        const comp = compressToEncodedURIComponent(text)
+        fetch(`https://fumen.tstman.net/jstris`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: `replay=${comp}`
+        }).then((response) => {
+          if (!response.ok) {
+            invalid()
+          } else {
+            response.json().then((data) => {
+              parseFumen(data.fumen)
+            })
+          }
         })
+      })
     })
   } else {
     fetch(`https://fumen.tstman.net/jstris`, {
@@ -101,11 +108,15 @@ function parseFile(txt) {
         "Content-Type": "application/json"
       },
       body: `replay=${txt}`
+    }).then((response) => {
+      if (!response.ok) {
+        invalid()
+      } else {
+        response.json().then((data) => {
+          parseFumen(data.fumen)
+        })
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        parseFumen(data.fumen)
-      })
   }
 }
 

@@ -37,7 +37,7 @@
 		data: Object
 	})
 
-  const currentPage = ref([0, 4])
+  const currentPage = ref([0, 0])
 
   const board = computed(() => {
     return props.data[currentPage.value[0]].stateArray[currentPage.value[1]].board
