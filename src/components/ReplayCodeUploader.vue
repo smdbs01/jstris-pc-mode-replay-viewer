@@ -93,11 +93,24 @@ function parseFile(txt) {
           parseFumen(data.fumen)
         })
     })
+  } else {
+    fetch(`https://fumen.tstman.net/jstris`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: `replay=${txt}`
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        parseFumen(data.fumen)
+      })
   }
 }
 
 function parseFumen(fumenUrl) {
-  console.log(fumenUrl)
+  // console.log(fumenUrl)
   const pages = decoder.decode(fumenUrl)
 
   const ret = []

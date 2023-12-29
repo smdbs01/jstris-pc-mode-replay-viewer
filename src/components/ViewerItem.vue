@@ -30,7 +30,7 @@
 	import sideUtility from './SideUtility.vue';
 
   onMounted(() => {
-    console.log(props.data)
+    console.log(props.data.length)
   })
 
 	const props = defineProps({
