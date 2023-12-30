@@ -1,10 +1,11 @@
 <template>
   <div class="w-[80%] rounded overflow-clip">
-    <div v-for="pc, index in PCArrays" :key="index"
+    <div v-for="pc, index in PCArrays" :key="index" :id="'P' + pc.PCNumber"
       class="w-full h-8 flex justify-center items-center hover:cursor-pointer" @click="$emit('pageClicked', pc.PCNumber)">
       <div
         class="text-sm line-height-normal group hover:opacity-100 transition-all duration-200"
         :class="{ 'opacity-60': pc.PCNumber != activePage, 'font-600': pc.PCNumber == activePage }">
+        <span class="font-mono text-gray-100 group-hover:text-teal-300 hidden lg:inline">{{ pc.PCNumber + " "}}</span>
         <span class="font-mono text-gray-100 group-hover:text-teal-300">{{ pc.initialQueue.substring(0, queueSplitter) + " " }}</span>
         <span class="font-mono text-gray-400 group-hover:text-teal-500" v-if="loop != '1'">{{ pc.initialQueue.substring(queueSplitter) }}</span>
 
@@ -14,14 +15,23 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
+
+onMounted(() => {
+  if (!props.isActive) return
+  const activePage = document.getElementById('P' + props.activePage)
+  if (activePage) {
+    activePage.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+})
 
 defineEmits(['pageClicked'])
 
 const props = defineProps({
   PCArrays: Object,
   activePage: Number,
-  loop: String
+  loop: String,
+  isActive: Boolean
 })
 
 const queueSplitter = computed(() => {

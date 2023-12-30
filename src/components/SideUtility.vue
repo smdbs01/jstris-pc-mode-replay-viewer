@@ -2,9 +2,9 @@
   <div class="w-[25%] h-[95%] overflow-y-scroll">
     <div class="w-[90%] h-full m-r-[-1rem] hidden sm:flex flex-col items-end">
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
-        <PageButton :loop="loop" :activeLoop="activeLoop" :isActive="loop == activeLoop" @loopClicked="loopClicked" />
-        <PageList v-if="expandedLoops[loop]" :loop="loop" :PCArrays="loopArrays[loop]" :activePage="activePage"
-          @pageClicked="$emit('changePage', $event)" />
+        <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" />
+        <PageList v-if="expandedLoops[loop]" :loop="loop" :isActive="loop == activeLoop" :PCArrays="loopArrays[loop]"
+          :activePage="activePage" @pageClicked="$emit('changePage', $event)" />
       </div>
     </div>
 
@@ -12,17 +12,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import PageButton from './PageButton.vue';
 import PageList from './PageList.vue';
 
-defineProps({
+const props = defineProps({
   loopArrays: Object,
   activeLoop: Number,
   activePage: Number
 })
 
-const expandedLoops = ref({
+const defaultExpanded = {
   1: false,
   2: false,
   3: false,
@@ -30,9 +30,24 @@ const expandedLoops = ref({
   5: false,
   6: false,
   7: false,
+}
+
+const expandedLoops = ref({
+  ...defaultExpanded
 })
 
 defineEmits(['changePage'])
+
+watch(() => props.activePage, () => {
+  expandedLoops.value = {
+    ...defaultExpanded
+  }
+  expandedLoops.value[props.activeLoop] = true
+  const activePage = document.getElementById('P' + props.activePage)
+  if (activePage) {
+    activePage.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+})
 
 function loopClicked(loop) {
   expandedLoops.value[loop] = !expandedLoops.value[loop]
