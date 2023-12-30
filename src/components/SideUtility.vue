@@ -4,7 +4,7 @@
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
         <PageButton :loop="loop" :activeLoop="activeLoop" :isActive="loop == activeLoop" @loopClicked="loopClicked" />
         <PageList v-if="expandedLoops[loop]" :loop="loop" :PCArrays="loopArrays[loop]" :activePage="activePage"
-          @pageClicked="pageClicked" />
+          @pageClicked="$emit('changePage', $event)" />
       </div>
     </div>
 
@@ -12,11 +12,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import PageButton from './PageButton.vue';
 import PageList from './PageList.vue';
 
-const props = defineProps({
+defineProps({
   loopArrays: Object,
   activeLoop: Number,
   activePage: Number
@@ -32,18 +32,11 @@ const expandedLoops = ref({
   7: false,
 })
 
+defineEmits(['changePage'])
+
 function loopClicked(loop) {
   expandedLoops.value[loop] = !expandedLoops.value[loop]
 }
-
-function pageClicked(page) {
-  console.log(page)
-}
-
-onMounted(() => {
-  console.log(props.loopArrays)
-  console.log(props.activeLoop)
-})
 </script>
 
 <style scoped>
