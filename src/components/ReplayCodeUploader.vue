@@ -35,7 +35,7 @@ import { decoder } from 'tetris-fumen'
 import { compressToEncodedURIComponent } from 'lz-string'
 
 const emit = defineEmits(['replay-uploaded'])
-const label = ref("upload a replay code")
+const label = ref("upload a replay code/link")
 const file = ref("")
 const isInputWindowOpened = ref(false)
 
