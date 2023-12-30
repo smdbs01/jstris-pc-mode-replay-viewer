@@ -123,7 +123,6 @@ function parseFile(txt) {
 }
 
 function parseFumen(fumenUrl) {
-  // console.log(fumenUrl)
   const pages = decoder.decode(fumenUrl)
 
   const ret = []
@@ -180,6 +179,15 @@ function parseFumen(fumenUrl) {
         queue: queue,
         placedBlocks: idx
       })
+    } else if (idx < pages.length - 1) {
+      label.value = "Replay too long!"
+      setTimeout(() => {
+        label.value = "upload a replay code"
+      }, 5000);
+
+      console.log("Didn't parse all pages, replay too long? Use the Json method.")
+      break
+
     }
   }
   if (curStateArrays.length > 0) {
@@ -189,6 +197,7 @@ function parseFumen(fumenUrl) {
       stateArray: curStateArrays
     })
   }
+
   emit('replay-uploaded', ret)
 }
 </script>

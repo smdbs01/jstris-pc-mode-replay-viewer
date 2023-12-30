@@ -8,11 +8,11 @@
 
     <footer class="w-[90%] h-[5%] mx-4 my-4 p-2 flex items-center justify-between absolute bottom-0">
       <div class="flex">
-        <RewindIcon class="mr-2" @click="reset()" />
-        <SkipbackIcon class="mr-2" @click="backPC()" />
-        <ArrowleftIcon class="mr-2" @click="backPiece()" />
-        <ArrowrightIcon class="mr-2" @click="forwardPiece()" />
-        <SkipforwardIcon class="mr-2" @click="forwardPC()" />
+        <RewindIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="reset()" />
+        <SkipbackIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPC()" />
+        <ArrowleftIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPiece()" />
+        <ArrowrightIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPiece()" />
+        <SkipforwardIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPC()" />
 
         <!-- Unocss implementation -->
         <!-- <ButtonItem icon-class="i-ph-rewind" class="mr-2" "> -->
@@ -23,15 +23,16 @@
       </div>
 
       <div class="flex items-center text-teal-600">
+        <span class="font-semibold mr-2 hidden sm:inline select-none">{{ currentPage[1] }}p <span class="font-normal">@</span></span>
         <input type="number"
-          class="w-7 inline-block mr-1 text-center rounded border-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-gray-300 focus:text-gray-700 hover:shadow-gray-300 focus:shadow-gray-300 transition-color"
-          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> 
-          <span class="hidden sm:inline">
-            / {{ props.data.length }} PC
-          </span>
+          class="w-8 inline-block text-center rounded border-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-gray-300 focus:text-gray-700 hover:shadow-gray-300 focus:shadow-gray-300 transition-color"
+          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" />
+        <span class="ml-2 hidden sm:inline select-none">
+          / {{ props.data.length }} PC
+        </span>
       </div>
 
-      <OptionIcon @click="openOptions()" />
+      <OptionIcon class="w-6 h-6 md:w-8 md:h-8" @click="openOptions()" />
       <!-- <ButtonItem iconClass="i-ph-option" @click="openOptions()" /> -->
     </footer>
   </div>
@@ -50,9 +51,9 @@ import SkipforwardIcon from './icons/SkipforwardIcon.vue';
 import OptionIcon from './icons/OptionIcon.vue';
 
 
-
 onMounted(() => {
   console.log(props.data.length)
+  currentPage.value = [0, 0]
 })
 
 const props = defineProps({

@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full h-8 rounded flex justify-center hover:cursor-pointer" @click="$emit('loopClicked', loop)"
-    :class="{ 'opacity-60': !isActive }" tabindex="0">
-    <div class="text-gray-200 font-normal text-lg leading-6 py-1 hover:text-teal-300 transition-all duration-200"
-      :class="{ 'font-semibold': isActive }">
+  <div class="w-full h-8 rounded bg-gray-800 z-10 flex justify-center hover:cursor-pointer" @click="$emit('loopClicked', loop)"
+     tabindex="0">
+    <div class="py-1 text-gray-200 select-none font-normal text-lg leading-6 hover:text-teal-300 transition-all duration-200"
+      :class="{ 'font-semibold': isActive, 'opacity-60': !isActive }">
       {{ computedLoopIndicator }}
     </div>
   </div>

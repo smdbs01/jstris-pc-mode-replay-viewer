@@ -1,8 +1,8 @@
 <template>
   <div class="w-[25%] h-[95%] overflow-y-scroll">
-    <div class="w-[90%] h-full mr-[-1rem] hidden sm:flex flex-col items-end">
+    <div class="w-[90%] h-[100%] mr-[-1rem] hidden sm:flex flex-col items-end">
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
-        <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" />
+        <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" class="top-0" :class="{ 'sticky': expandedLoops[loop] }"/>
         <PageList v-if="expandedLoops[loop]" :loop="loop" :isActive="loop == activeLoop" :PCArrays="loopArrays[loop]"
           :activePage="activePage" @pageClicked="$emit('changePage', $event)" />
       </div>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted} from 'vue';
 import PageButton from './PageButton.vue';
 import PageList from './PageList.vue';
 
@@ -31,6 +31,10 @@ const defaultExpanded = {
   6: false,
   7: false,
 }
+
+onMounted(() => {
+  expandedLoops.value[1] = true
+})
 
 const expandedLoops = ref({
   ...defaultExpanded

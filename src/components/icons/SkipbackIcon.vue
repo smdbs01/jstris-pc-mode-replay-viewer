@@ -1,7 +1,7 @@
 <template>
-  <div
-    class="w-8 h-8 relative text-teal-600 hover:text-teal-800 rounded-md hover:cursor-pointer focus:outline-none focus:text-teal-300 transition-all duration-100">
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+  <div tabindex="0"
+    class="relative text-teal-600 hover:text-teal-700 rounded-md hover:cursor-pointer outline-none focus:text-teal-300 active:text-teal-400 active:border-0 transition-all duration-100">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
       <path fill="currentColor"
         d="M199.81 34a16 16 0 0 0-16.24.43L64 109.23V40a8 8 0 0 0-16 0v176a8 8 0 0 0 16 0v-69.23l119.57 74.78A15.95 15.95 0 0 0 208 208.12V47.88A15.86 15.86 0 0 0 199.81 34M192 208L64.16 128L192 48.07Z" />
     </svg>
