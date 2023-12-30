@@ -16,8 +16,8 @@
 <script setup>
 import { ref } from 'vue'
 import ViewerItem from './components/ViewerItem.vue'
-import FileUploader from './components/FileUploader.vue'
-import ReplayCodeUploader from './components/ReplayCodeUploader.vue'
+import FileUploader from './components/uploaders/FileUploader.vue'
+import ReplayCodeUploader from './components/uploaders/ReplayCodeUploader.vue'
 
 const replayObj = ref([])
 

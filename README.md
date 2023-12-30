@@ -39,9 +39,11 @@ There are two uploading methods:
 
 2. Wait a few seconds until the reponses are received. The replay will then show up in the viewer.
 
+>There's an issue with the api I use that the queue after certain number of pieces placed will not be shown. If you see `Replay too long`, please use the [second method](#upload-a-replay-json).
+
 #### ~~Upload a replay json~~ 
 
->Since this method is simply more complicated, please use [the other method above](#upload-a-replay-codeurl) unless it is not possible (when Jstris server is down).
+>Since this method is simply more complicated, please use [the other method above](#upload-a-replay-codeurl) unless it is not possible (when Jstris server is down or the replay is too long).
 
 1. Install [TamperMonkey](https://www.tampermonkey.net/index.php) from [Chrome Store](https://chrome.google.com/webstore/detail/tampermonkey/gppongmhjkpfnbhagpmjfkannfbllamg) or [Firefox Store](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/).
 2. Download and import [this script](./md_assets/PCReplayDownloader.js) into the TamperMonkey console (or create a new script and paste the code into it).

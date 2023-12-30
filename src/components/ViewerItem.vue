@@ -8,22 +8,46 @@
 
     <footer class="w-[90%] h-[5%] mx-4 my-4 p-2 flex items-center justify-between absolute bottom-0">
       <div class="flex">
-        <RewindIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="reset()" />
-        <SkipbackIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPC()" />
-        <ArrowleftIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPiece()" />
-        <ArrowrightIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPiece()" />
-        <SkipforwardIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPC()" />
-
-        <!-- Unocss implementation -->
-        <!-- <ButtonItem icon-class="i-ph-rewind" class="mr-2" "> -->
-        <!-- <ButtonItem icon-class="i-ph-skip-back" class="mr-2" @click="backPC()" /> -->
-        <!-- <ButtonItem icon-class="i-ph-arrow-left" class="mr-2" @click="backPiece()" /> -->
-        <!-- <ButtonItem icon-class="i-ph-arrow-right" class="mr-2" @click="forwardPiece()" /> -->
-        <!-- <ButtonItem icon-class="i-ph-skip-forward" class="mr-2" @click="forwardPC()" />  -->
+        <!-- Reset -->
+        <ButtonIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="reset()" :title="'Reset'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path fill="currentColor"
+              d="M223.77 58a16 16 0 0 0-16.25.53L128 109.14v-37.3a15.91 15.91 0 0 0-24.48-13.34l-88.19 56.16a15.8 15.8 0 0 0 0 26.68l88.19 56.16A15.91 15.91 0 0 0 128 184.16v-37.3l79.52 50.64A15.91 15.91 0 0 0 232 184.16V71.84A15.83 15.83 0 0 0 223.77 58M112 183.93L24.18 128L112 72.06Zm104 0L128.18 128L216 72.06Z" />
+          </svg>
+        </ButtonIcon>
+        <!-- BackPC -->
+        <ButtonIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPC()" :title="'Last PC'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path fill="currentColor"
+              d="M199.81 34a16 16 0 0 0-16.24.43L64 109.23V40a8 8 0 0 0-16 0v176a8 8 0 0 0 16 0v-69.23l119.57 74.78A15.95 15.95 0 0 0 208 208.12V47.88A15.86 15.86 0 0 0 199.81 34M192 208L64.16 128L192 48.07Z" />
+          </svg>
+        </ButtonIcon>
+        <!-- BackPiece -->
+        <ButtonIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="backPiece()" :title="'Last Piece'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path fill="currentColor"
+              d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8" />
+          </svg>
+        </ButtonIcon>
+        <!-- ForwardPiece -->
+        <ButtonIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPiece()" :title="'Next Piece'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="inline-block">
+            <path fill="currentColor"
+              d="m221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32" />
+          </svg>
+        </ButtonIcon>
+        <!-- ForwardPC -->
+        <ButtonIcon class="mr-2 w-6 h-6 md:w-8 md:h-8" @click="forwardPC()" :title="'Next PC'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="inline-block">
+            <path fill="currentColor"
+              d="M200 32a8 8 0 0 0-8 8v69.23L72.43 34.45A15.95 15.95 0 0 0 48 47.88v160.24a16 16 0 0 0 24.43 13.43L192 146.77V216a8 8 0 0 0 16 0V40a8 8 0 0 0-8-8M64 207.93V48.05l127.84 80Z" />
+          </svg>
+        </ButtonIcon>
       </div>
 
       <div class="flex items-center text-teal-600">
-        <span class="font-semibold mr-2 hidden sm:inline select-none">{{ currentPage[1] }}p <span class="font-normal">@</span></span>
+        <span class="font-semibold mr-2 hidden sm:inline select-none">{{ currentPage[1] }}p <span
+            class="font-normal">@</span></span>
         <input type="number"
           class="w-8 inline-block text-center rounded border-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-gray-300 focus:text-gray-700 hover:shadow-gray-300 focus:shadow-gray-300 transition-color"
           :value="currentPage[0] + 1" @input="updatePage($event.target.value)" />
@@ -32,23 +56,23 @@
         </span>
       </div>
 
-      <OptionIcon class="w-6 h-6 md:w-8 md:h-8" @click="openOptions()" />
-      <!-- <ButtonItem iconClass="i-ph-option" @click="openOptions()" /> -->
+      <!-- Option -->
+      <ButtonIcon class="w-6 h-6 md:w-8 md:h-8" @click="openOptions()" :title="'Option'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="inline-block">
+          <path fill="currentColor"
+            d="M232 184a8 8 0 0 1-8 8h-63.06a15.92 15.92 0 0 1-14.31-8.84L95.06 80H32a8 8 0 0 1 0-16h63.06a15.92 15.92 0 0 1 14.31 8.84L160.94 176H224a8 8 0 0 1 8 8M152 80h72a8 8 0 0 0 0-16h-72a8 8 0 0 0 0 16" />
+        </svg>
+      </ButtonIcon>
     </footer>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import TetrisBoard from './TetrisBoard.vue';
+import TetrisBoard from './board/TetrisBoard.vue';
 import sideUtility from './SideUtility.vue';
 
-import RewindIcon from './icons/RewindIcon.vue';
-import SkipbackIcon from './icons/SkipbackIcon.vue'
-import ArrowleftIcon from './icons/ArrowleftIcon.vue';
-import ArrowrightIcon from './icons/ArrowrightIcon.vue';
-import SkipforwardIcon from './icons/SkipforwardIcon.vue';
-import OptionIcon from './icons/OptionIcon.vue';
+import ButtonIcon from './icons/ButtonIcon.vue';
 
 
 onMounted(() => {

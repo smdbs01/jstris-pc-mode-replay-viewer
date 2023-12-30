@@ -13,8 +13,8 @@
 
 <script setup>
 import { ref, watch, onMounted} from 'vue';
-import PageButton from './PageButton.vue';
-import PageList from './PageList.vue';
+import PageButton from './sidebar/PageButton.vue';
+import PageList from './sidebar/PageList.vue';
 
 const props = defineProps({
   loopArrays: Object,
