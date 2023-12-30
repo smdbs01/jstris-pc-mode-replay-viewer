@@ -68,10 +68,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import TetrisBoard from './board/TetrisBoard.vue';
 import sideUtility from './SideUtility.vue';
-
 import ButtonIcon from './icons/ButtonIcon.vue';
 
 
@@ -85,6 +84,10 @@ const props = defineProps({
 })
 
 const currentPage = ref([0, 0])
+
+watch(() => props.data.length, () => {
+  currentPage.value = [0, 0]
+})
 
 const loopArrays = computed(() => {
   const ret = {}
