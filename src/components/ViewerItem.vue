@@ -1,35 +1,52 @@
 <template>
-  <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
+  <div class="mx-4 my-2 flex flex-col items-center bg-gray-800 relative">
     <div class="w-[90%] h-[90%] mx-4 mt-4 py-2 flex justify-between items-center overflow-hidden">
       <TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator" />
-      <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0]+1" @change-page="updatePage"/>
+      <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0] + 1"
+        @change-page="updatePage" />
     </div>
 
-    <footer class="w-[90%] h-[5%] mx-4 mt-4 p-2 flex items-center justify-between absolute bottom-0">
-      <div class="">
-        <ButtonItem icon-class="i-ph-rewind" class="mr-2" @click="reset()" />
-        <ButtonItem icon-class="i-ph-skip-back" class="mr-2" @click="backPC()" />
-        <ButtonItem icon-class="i-ph-arrow-left" class="mr-2" @click="backPiece()" />
-        <ButtonItem icon-class="i-ph-arrow-right" class="mr-2" @click="forwardPiece()" />
-        <ButtonItem icon-class="i-ph-skip-forward" class="mr-2" @click="forwardPC()" />
+    <footer class="w-[90%] h-[5%] mx-4 my-4 p-2 flex items-center justify-between absolute bottom-0">
+      <div class="flex">
+        <RewindIcon class="mr-2" @click="reset()" />
+        <SkipbackIcon class="mr-2" @click="backPC()" />
+        <ArrowleftIcon class="mr-2" @click="backPiece()" />
+        <ArrowrightIcon class="mr-2" @click="forwardPiece()" />
+        <SkipforwardIcon class="mr-2" @click="forwardPC()" />
+
+        <!-- Unocss implementation -->
+        <!-- <ButtonItem icon-class="i-ph-rewind" class="mr-2" "> -->
+        <!-- <ButtonItem icon-class="i-ph-skip-back" class="mr-2" @click="backPC()" /> -->
+        <!-- <ButtonItem icon-class="i-ph-arrow-left" class="mr-2" @click="backPiece()" /> -->
+        <!-- <ButtonItem icon-class="i-ph-arrow-right" class="mr-2" @click="forwardPiece()" /> -->
+        <!-- <ButtonItem icon-class="i-ph-skip-forward" class="mr-2" @click="forwardPC()" />  -->
       </div>
 
       <div class="flex items-center text-teal-600">
         <input type="number"
-          class="w-7 inline-block mr-1 text-center rounded b-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-cool-gray-300 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color"
+          class="w-7 inline-block mr-1 text-center rounded border-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-gray-300 focus:text-gray-700 hover:shadow-gray-300 focus:shadow-gray-300 transition-color"
           :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> / {{ props.data.length }} PC
       </div>
 
-      <ButtonItem iconClass="i-ph-option" @click="openOptions()" />
+      <OptionIcon @click="openOptions()" />
+      <!-- <ButtonItem iconClass="i-ph-option" @click="openOptions()" /> -->
     </footer>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import ButtonItem from './ButtonItem.vue';
 import TetrisBoard from './TetrisBoard.vue';
 import sideUtility from './SideUtility.vue';
+
+import RewindIcon from './icons/RewindIcon.vue';
+import SkipbackIcon from './icons/SkipbackIcon.vue'
+import ArrowleftIcon from './icons/ArrowleftIcon.vue';
+import ArrowrightIcon from './icons/ArrowrightIcon.vue';
+import SkipforwardIcon from './icons/SkipforwardIcon.vue';
+import OptionIcon from './icons/OptionIcon.vue';
+
+
 
 onMounted(() => {
   console.log(props.data.length)

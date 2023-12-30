@@ -3,18 +3,18 @@
     <!-- Hold and Queue + LG Board-->
     <div class="w-full h-[70%] ml-4 lg:h-full flex justify-between">
       <!-- Hold + PC # -->
-      <div class="w-30 h-full flex flex-col justify-between relative">
+      <div class="w-[7.5rem] h-full flex flex-col justify-between relative">
         <div>
-          <div class="h-21 w-30 relative">
-            <TetriminoItem class="pr-2 pb-2 xs:absolute xs:pos-right-2" skin="purecolor" :type="computedHold"
+          <div class="h-[5.25rem] w-[7.5rem] relative">
+            <TetriminoItem class="pr-2 pb-2 xs:absolute xs:right-2" skin="purecolor" :type="computedHold"
               :class="{ 'hidden': !hasHold }" />
           </div>
-          <div class="text-teal-400 pl-7 pt-7 font-500 text-3xl sm:hidden">{{ computedLoopIndicator }}</div>
+          <div class="text-teal-400 pl-7 pt-7 font-medium text-3xl sm:hidden">{{ computedLoopIndicator }}</div>
         </div>
         
         <!-- XS: Current piece -->
         <div class="w-28 relative sm:hidden">
-          <TetriminoItem class="sm:hidden absolute pos-left-21 pos-bottom-[-1rem]" skin="purecolor"
+          <TetriminoItem class="sm:hidden absolute left-[5.25rem] bottom-[-1rem]" skin="purecolor"
             :type="computedCurrentPiece" />
         </div>
       </div>
@@ -22,18 +22,18 @@
 
       <!-- SM: Current piece -->
       <div class="w-28 h-full flex-col justify-end relative hidden sm:flex lg:hidden">
-        <TetriminoItem class="absolute pos-right-7 pos-bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
+        <TetriminoItem class="absolute right-7 bottom-[-1rem]" skin="purecolor" :type="computedCurrentPiece" />
       </div>
 
       <!-- LG: Board -->
-      <div class="w-70 h-full b-1 b-indigo-2 b-solid b-t-none hidden lg:flex lg:flex-col lg:justify-end lg:items-center">
+      <div class="w-[17.5rem] h-full border-2 border-indigo-200 border-solid border-t-0 hidden lg:flex lg:flex-col lg:justify-end lg:items-center">
         <!-- LG: Current -->
-        <div class="w-28 flex flex-col justify-end relative hidden lg:block">
-          <TetriminoItem class="absolute pos-bottom-30" skin="purecolor" :type="computedCurrentPiece" />
+        <div class="w-28 flex-col justify-end relative hidden lg:flex">
+          <TetriminoItem class="absolute bottom-[7.5rem]" skin="purecolor" :type="computedCurrentPiece" />
         </div>
 
         <!-- LG: Board -->
-        <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
+        <div v-for="row, index in computedBoard" :key="index" class="w-[17.5rem] h-7 flex border-2 border-indigo-200 border-solid border-y-0">
           <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
         </div>
       </div>
@@ -47,8 +47,8 @@
 
     <!-- XS: Board -->
     <div
-      class="w-70 h-[25%] mt-2 b-1 b-indigo-2 b-solid b-t-none flex flex-col justify-end xs:absolute xs:pos-left-0 xs:bottom-0 lg:hidden">
-      <div v-for="row, index in computedBoard" :key="index" class="w-70 h-7 flex">
+      class="w-[17.5rem] h-[25%] mt-2 border-2 border-indigo-200 border-solid border-t-0 flex flex-col justify-end xs:absolute xs:left-0 xs:bottom-0 lg:hidden">
+      <div v-for="row, index in computedBoard" :key="index" class="w-full h-7 flex">
         <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
       </div>
     </div>

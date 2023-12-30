@@ -1,26 +1,26 @@
 <template>
   <div>
     <div class="flex flex-col items-center mt-4">
-      <label tabindex="0" class="p-2 focus:outline-none focus:bg-teal-600 hover:bg-teal-600 b-solid b-teal-600 rounded-xl focus:text-gray-200 hover:text-gray-200
+      <label tabindex="0" class="p-2 focus:outline-none focus:bg-teal-600 hover:bg-teal-600 border-solid border-2 border-teal-600 rounded-xl focus:text-gray-200 hover:text-gray-200
      text-teal-600 hover:cursor-pointer transition-all duration-100" @click="isInputWindowOpened = true">
         {{ label }}
       </label>
       <!-- Shader -->
-      <div v-if="isInputWindowOpened" class="w-full h-full flex flex-col items-center absolute pos-top-0 pos-left-0">
-        <div class="w-[100vw] h-[100vh] fixed z-50 pos-top-0 pos-left-0 bg-gray-800 bg-opacity-80" @click="closePopup()">
+      <div v-if="isInputWindowOpened" class="w-full h-full flex flex-col items-center absolute top-0 left-0">
+        <div class="w-[100vw] h-[100vh] fixed z-50 top-0 left-0 bg-gray-800 bg-opacity-80" @click="closePopup()">
         </div>
         <div
-          class="w-[80vw] max-w-xl h-[40vh] p-4 z-50 b-1 b-solid b-gray-700 bg-gray-800 rounded-xl flex flex-col shadow-md items-center justify-start relative pos-top-1/4">
+          class="w-[80vw] max-w-xl h-[40vh] p-4 z-50 border-2 border-solid border-gray-700 bg-gray-800 rounded-xl flex flex-col shadow-sm items-center justify-start relative top-1/4">
           <textarea
-            class="w-[95%] h-[80%] bg-gray-800 text-gray-300 rounded-xl mx-2 p-2 resize-none focus:outline-none focus:bg-blue-gray-700 focus:text-gray-200"
+            class="w-[95%] h-[80%] bg-gray-700 text-gray-300 rounded-xl mx-2 p-2 resize-none focus:outline-none focus:text-gray-200"
             placeholder="Paste your replay link or replay code, examples: &#10;&#10;https://jstris.jezevec10.com/replay/48791348&#10;or&#10;N4IgxiBcoG5QzAOngGhAZwPYDMAuARAJ0wAcBJAEygCY0BzAQwFsBTAZVwcNygEYA2ACyD4ADgAMAVkm9Jg2iEasAog......"
             @keydown.enter="addFile()" v-model="file"></textarea>
           <div class="w-[95%] mt-4 flex justify-around">
             <button
-              class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 b-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
+              class="w-[7.5rem] bg-gray-700 text-gray-300 border-gray-800 border-2 border-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
               @click="closePopup()">Close</button>
             <button
-              class="w-30 bg-gray-700 text-gray-300 b-gray-800 b-1 b-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
+              class="w-[7.5rem] bg-gray-700 text-gray-300 border-gray-800 border-2 border-solid rounded-xl mx-2 p-2 appearance-none focus:outline-none hover:bg-gray-600 focus:bg-gray-600 transition-all duration-100"
               @click="addFile()">Upload</button>
           </div>
         </div>

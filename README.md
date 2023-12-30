@@ -2,7 +2,7 @@
 
 A Web-based tool for reviewing Jstris PC Mode replay. 
 
-[GitHub Page](https://github.com/smdbs/jstris-pc-mode-replay-viewer)
+Demo: [GitHub Page](https://smdbs-smdbs.github.io/jstris-pc-mode-replay-viewer/)
 
 ## Description
 
@@ -31,9 +31,17 @@ As shown in the above image, there are 5 major regions in the UI:
 
 There are two uploading methods:
 
+#### Upload a replay code/url
+
+1. In the viewer, click the **upload a replay code/url** button and open up a Jstris PC Mode replay, then either -
+  - Copy the replay link in the url bar. It should be in the format of `https://jstris.jezevec10.com/replay/12345678`. Paste it in the popped up input area and click "**Upload**"
+  - Copy the replay code to the left of the **Load** button. Paste it in the popped up input area and click "**Upload**"
+
+2. Wait a few seconds until the reponses are received. The replay will then show up in the viewer.
+
 #### ~~Upload a replay json~~ 
 
->Since this method is simply more complicated, please use the [other method](#upload-a-replay-codeurl) unless it is not possible (when Jstris server is down).
+>Since this method is simply more complicated, please use [the other method above](#upload-a-replay-codeurl) unless it is not possible (when Jstris server is down).
 
 1. Install [TamperMonkey](https://www.tampermonkey.net/index.php) from [Chrome Store](https://chrome.google.com/webstore/detail/tampermonkey/gppongmhjkpfnbhagpmjfkannfbllamg) or [Firefox Store](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/).
 2. Download and import [this script](./md_assets/PCReplayDownloader.js) into the TamperMonkey console (or create a new script and paste the code into it).
@@ -44,17 +52,11 @@ There are two uploading methods:
 ![Script instruction2](./md_assets/script2.png)
 6. In the viewer, click the **upload a replay json** button and select the file you just downloaded.
 
-#### Upload a replay code/url
-
-1. In the viewer, click the **upload a replay code/url** button and open up a Jstris PC Mode replay, then either -
-  - Copy the replay link in the url bar. It should be in the format of `https://jstris.jezevec10.com/replay/12345678`. Paste it in the popped up input area and click "**Upload**"
-  - Copy the replay code to the left of the **Load** button. Paste it in the popped up input area and click "**Upload**"
-
-2. Wait a few seconds until the reponses are received. The replay will then show up in the viewer.
-
 ## Contribute
 
-Please see the [GitHub tutorial](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) on forking and sending pull requests. If you have any questions, please feel free to [open an issue](https://github.com/smdbs-smdbs/jstris-pc-mode-replay-viewer/issues).
+Please see the [GitHub tutorial](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) on forking and sending pull requests. (Have fun editing my tailwind styles!)
+
+If you have any questions, please feel free to [open an issue](https://github.com/smdbs-smdbs/jstris-pc-mode-replay-viewer/issues).
 
 ## Run on your local machine
 

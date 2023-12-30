@@ -1,6 +1,6 @@
 <template>
   <div class="w-[25%] h-[95%] overflow-y-scroll">
-    <div class="w-[90%] h-full m-r-[-1rem] hidden sm:flex flex-col items-end">
+    <div class="w-[90%] h-full mr-[-1rem] hidden sm:flex flex-col items-end">
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
         <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" />
         <PageList v-if="expandedLoops[loop]" :loop="loop" :isActive="loop == activeLoop" :PCArrays="loopArrays[loop]"

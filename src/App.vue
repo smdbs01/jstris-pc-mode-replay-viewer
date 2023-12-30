@@ -1,12 +1,12 @@
 <template>
   <main class="w-full h-screen flex flex-col items-center bg-gray-200 relative">
-    <h1 class="mt-4 text-2xl font-bold text-gray-800 tracking-tight">
+    <h1 class="my-4 text-2xl font-bold text-gray-800 tracking-tight">
       Jstris PC Mode Replay Viewer
     </h1>
 
-    <ViewerItem class="min-w-80 sm:w-135 lg:w-220 min-h-[700px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length"
+    <ViewerItem class="min-w-80 sm:w-[33.75rem] lg:w-[55rem] min-h-[700px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length"
       :data="replayObj" />
-    <div class="w-sm mt-4 flex justify-between">
+    <div class="w-[24rem] mt-4 flex justify-between">
       <FileUploader @replay-uploaded="loadReplay" />
       <ReplayCodeUploader @replay-uploaded="loadReplay" />
     </div>
