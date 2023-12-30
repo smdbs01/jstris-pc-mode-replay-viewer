@@ -25,7 +25,10 @@
       <div class="flex items-center text-teal-600">
         <input type="number"
           class="w-7 inline-block mr-1 text-center rounded border-1 shadow-teal-600 bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-gray-300 focus:text-gray-700 hover:shadow-gray-300 focus:shadow-gray-300 transition-color"
-          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> / {{ props.data.length }} PC
+          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> 
+          <span class="hidden sm:inline">
+            / {{ props.data.length }} PC
+          </span>
       </div>
 
       <OptionIcon @click="openOptions()" />

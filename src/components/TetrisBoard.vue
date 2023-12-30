@@ -14,7 +14,7 @@
         
         <!-- XS: Current piece -->
         <div class="w-28 relative sm:hidden">
-          <TetriminoItem class="sm:hidden absolute left-[5.25rem] bottom-[-1rem]" skin="purecolor"
+          <TetriminoItem class="sm:hidden absolute bottom-[-1rem]" skin="purecolor"
             :type="computedCurrentPiece" />
         </div>
       </div>
@@ -34,7 +34,7 @@
 
         <!-- LG: Board -->
         <div v-for="row, index in computedBoard" :key="index" class="w-[17.5rem] h-7 flex border-2 border-indigo-200 border-solid border-y-0">
-          <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
+          <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" :class="{'opacity-0': t === 'N'}"/>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
     <div
       class="w-[17.5rem] h-[25%] mt-2 border-2 border-indigo-200 border-solid border-t-0 flex flex-col justify-end xs:absolute xs:left-0 xs:bottom-0 lg:hidden">
       <div v-for="row, index in computedBoard" :key="index" class="w-full h-7 flex">
-        <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" />
+        <MinoItem v-for="t, index in row" :key="index" skin="purecolor" :type="t" class="w-7 h-7" :class="{'opacity-0': t === 'N'}" />
       </div>
     </div>
 
