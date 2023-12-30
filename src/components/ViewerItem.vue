@@ -1,6 +1,6 @@
 <template>
   <div class="mx-4 flex flex-col items-center bg-gray-800 relative">
-    <div class="w-[90%] h-[90%] mx-4 mt-4 py-2 flex justify-between items-center">
+    <div class="w-[90%] h-[90%] mx-4 mt-4 py-2 flex justify-between items-center overflow-hidden">
       <TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator" />
       <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0]+1" />
     </div>
@@ -17,7 +17,7 @@
       <div class="flex items-center text-teal-600">
         <input type="number"
           class="w-7 inline-block mr-1 text-center rounded bg-gray-600 text-teal-200 focus:outline-none hover:bg-gray-500 focus:bg-cool-gray-300 focus:text-gray-700 hover:shadow-coolGray-300 focus:shadow-coolGray-300 transition-color duration-100"
-          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> / {{ props.data.length }}
+          :value="currentPage[0] + 1" @input="updatePage($event.target.value)" /> / {{ props.data.length }} PC
       </div>
 
       <ButtonItem iconClass="i-ph-option" @click="openOptions()" />
@@ -50,7 +50,7 @@ const loopArrays = computed(() => {
     }
 
     ret[loop].push({
-      name: i + 1,
+      PCNumber: i + 1,
       initialQueue: props.data[i].stateArray[0].queue,
     })
   }

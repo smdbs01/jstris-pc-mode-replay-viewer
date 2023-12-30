@@ -34,8 +34,10 @@ export default defineConfig({
     presetIcons(),
     presetTypography(),
     presetWebFonts({
+      provider: 'google',
       fonts: {
-        // ...
+        sans: 'Roboto',
+        mono: ['Fira Code', 'Fira Mono:400,700'],
       }
     })
   ],
