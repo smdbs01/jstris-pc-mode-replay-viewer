@@ -6,7 +6,7 @@
 
     <ViewerItem class="min-w-80 sm:w-[33.75rem] lg:w-[55rem] min-h-[700px] h-[80%] rounded-xl shadow-md" v-if="replayObj.length"
       :data="replayObj" />
-    <div class="w-[36rem] mt-4 flex justify-around">
+    <div class="w-[70vw] max-w-[36rem] mt-4 flex justify-around">
       <FileUploader @replay-uploaded="loadReplay" />
       <ReplayCodeUploader @replay-uploaded="loadReplay" />
     </div>

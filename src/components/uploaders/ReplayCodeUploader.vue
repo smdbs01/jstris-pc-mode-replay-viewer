@@ -77,49 +77,38 @@ function parseFile(txt) {
       id = parts[5]
     }
 
-    const url = "https://" + parts[2] + "/replay/data?id=" + id + "&type=0"
+    const url = 'https://corsproxy.io/?' + encodeURIComponent("https://" + parts[2] + "/replay/data?id=" + id + "&type=0");
     fetch(url).then((response) => {
       if (!response.ok) {
         invalid()
       }
       response.text().then((text) => {
         const comp = compressToEncodedURIComponent(text)
-        fetch(`https://fumen.tstman.net/jstris`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          },
-          body: `replay=${comp}`
-        }).then((response) => {
-          if (!response.ok) {
-            invalid()
-          } else {
-            response.json().then((data) => {
-              parseFumen(data.fumen)
-            })
-          }
-        })
+        codeToFumen(comp)
       })
     })
   } else {
-    fetch(`https://fumen.tstman.net/jstris`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: `replay=${txt}`
-    }).then((response) => {
-      if (!response.ok) {
-        invalid()
-      } else {
-        response.json().then((data) => {
-          parseFumen(data.fumen)
-        })
-      }
-    })
+    codeToFumen(txt)
   }
+}
+
+function codeToFumen(replayCode) {
+  fetch(`https://fumen.tstman.net/jstris`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: `replay=${replayCode}`
+  }).then((response) => {
+    if (!response.ok) {
+      invalid()
+    } else {
+      response.json().then((data) => {
+        parseFumen(data.fumen)
+      })
+    }
+  })
 }
 
 function parseFumen(fumenUrl) {
