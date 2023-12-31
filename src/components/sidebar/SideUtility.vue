@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[25%] h-[95%] overflow-y-scroll">
+  <div class="w-[25%] h-[95%] hidden sm:block overflow-y-scroll">
     <div class="w-[90%] h-[100%] mr-[-1rem] hidden sm:flex flex-col items-end">
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
         <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" class="top-0" :class="{ 'sticky': expandedLoops[loop] }"/>
@@ -13,8 +13,8 @@
 
 <script setup>
 import { ref, watch, onMounted} from 'vue';
-import PageButton from './sidebar/PageButton.vue';
-import PageList from './sidebar/PageList.vue';
+import PageButton from './PageButton.vue';
+import PageList from './PageList.vue';
 
 const props = defineProps({
   loopArrays: Object,

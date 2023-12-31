@@ -13,7 +13,7 @@
         </div>
         
         <!-- XS: Current piece -->
-        <div class="w-28 relative sm:hidden">
+        <div class="w-28 h-14 relative sm:hidden">
           <TetriminoItem class="sm:hidden absolute bottom-[-1rem]" skin="purecolor"
             :type="computedCurrentPiece" />
         </div>

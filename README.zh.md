@@ -6,7 +6,7 @@
 
 一个网页版的 Jstris PC Mode 回放查看器
 
-Demo: [GitHub Page](https://smdbs-smdbs.github.io/jstris-pc-mode-replay-viewer/)
+Demo: [GitHub Page](https://smdbs01.github.io/jstris-pc-mode-replay-viewer/)
 
 ## 介绍
 

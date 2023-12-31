@@ -7,7 +7,7 @@
 
 A Web-based tool for reviewing Jstris PC Mode replay.
 
-Demo: [GitHub Page](https://smdbs-smdbs.github.io/jstris-pc-mode-replay-viewer/)
+Demo: [GitHub Page](https://smdbs01.github.io/jstris-pc-mode-replay-viewer//)
 
 ## Description
 
