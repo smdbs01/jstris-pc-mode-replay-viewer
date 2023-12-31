@@ -14,7 +14,11 @@
 import { ref } from 'vue'
 
 const emit = defineEmits(['replay-uploaded'])
-const label = ref("upload a replay json")
+
+const getDefaultLabel = function (){
+  return window.innerWidth < 640 ? "Json Upload" : "Upload a Replay Json"
+}
+const label = ref(getDefaultLabel())
 
 const pieceTable = {
   'I': 2,
@@ -45,7 +49,7 @@ function parseFile(f) {
       console.log("invalid json")
       label.value = "Invalid Json"
       setTimeout(() => {
-        label.value = "Upload a Replay Json"
+        label.value = getDefaultLabel()
       }, 2000);
     }
   }

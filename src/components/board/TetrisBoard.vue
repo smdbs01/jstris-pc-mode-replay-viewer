@@ -9,7 +9,7 @@
             <TetriminoItem class="pr-2 pb-2 xs:absolute xs:right-2" skin="purecolor" :type="computedHold"
               :class="{ 'hidden': !hasHold }" />
           </div>
-          <div class="text-teal-400 pl-7 pt-7 font-medium text-3xl sm:hidden">{{ computedLoopIndicator }}</div>
+          <div class="pl-7 pt-7 text-teal-400 font-medium text-3xl sm:hidden">{{ computedLoopIndicator }}</div>
         </div>
         
         <!-- XS: Current piece -->
