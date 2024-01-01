@@ -10,7 +10,7 @@
       @openOptions="openOptions" @backPiece="backPiece" @forwardPiece="forwardPiece" @backPC="backPC"
       @forwardPC="forwardPC" @reset="reset" />
 
-    <PCUtils :button-list="buttonList" @open-solver="openSolver" @open-fumen="openFumen"/>
+    <PCUtils :button-list="buttonList" @open-solver="openSolver" @open-fumen="openFumen" />
   </div>
 </template>
 
@@ -37,7 +37,7 @@ watch(() => props.data.length, () => {
 })
 
 /**
- * Side Utility
+ * Array of 7 types of PC
  */
 const loopArrays = computed(() => {
   const ret = {}
@@ -126,12 +126,14 @@ function openOptions() {
 
 const buttonList = [
   {
-    label: "Solver",
-    onClick: 'open-solver'
+    label: "solver",
+    onClick: 'open-solver',
+    enabled: true
   },
   {
-    label: "Fumen",
-    onClick: 'open-fumen'
+    label: "fumen",
+    onClick: 'open-fumen',
+    enabled: false
   }
 ]
 
@@ -215,14 +217,4 @@ function generateFumenQueue() {
 
 </script>
 
-<style scoped>
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type=number] {
-  -moz-appearance: textfield;
-}
-</style>
+<style scoped></style>

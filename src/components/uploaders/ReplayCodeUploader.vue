@@ -6,8 +6,8 @@
         {{ label }}
       </label>
       <!-- Shader -->
-      <div v-if="isInputWindowOpened" class="w-full h-full flex flex-col items-center absolute top-0 left-0">
-        <div class="w-[100vw] h-[100vh] fixed z-50 top-0 left-0 bg-gray-800 bg-opacity-80" @click="closePopup()">
+      <div v-if="isInputWindowOpened" class="w-full h-full flex flex-col items-center fixed z-50 top-0 left-0">
+        <div class="w-[100vw] h-[100vh] absolute z-50 top-0 left-0 bg-gray-800 bg-opacity-80" @click="closePopup()">
         </div>
         <div
           class="w-[80vw] max-w-xl h-[40vh] p-4 z-50 border-2 border-solid border-gray-700 bg-gray-800 rounded-xl flex flex-col shadow-sm items-center justify-start relative top-1/4">

@@ -9,7 +9,8 @@
 
 <script setup>
 defineProps({
-  label: String
+  label: String,
+  enabled: Boolean
 })
 </script>
 
