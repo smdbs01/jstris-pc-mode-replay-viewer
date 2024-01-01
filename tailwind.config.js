@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      'sans': ['Helvetica', 'ui-sans-serif', 'system-ui'],
+      'sans': ['system-ui', 'ui-sans-serif'],
       'serif': ['ui-serif', 'Georgia'],
-      'mono': ['"Fira Code"', '"Fira Mono:400,700"', 'ui-monospace', 'SFMono-Regular'],
+      'mono': ['SFMono-Regular', '"Fira Code"', '"Fira Mono:400,700"', 'ui-monospace'],
     },
     screens: {
       'xs': '320px',

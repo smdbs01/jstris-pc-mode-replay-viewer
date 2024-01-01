@@ -71,7 +71,6 @@ const emit = defineEmits(['reset', 'openOptions', 'backPiece', 'forwardPiece', '
 // Key binding
 const options = ref({
   "R": reset,
-  "O": openOptions,
   "ArrowLeft": backPiece,
   "ArrowRight": forwardPiece,
   "ArrowUp": backPC,
