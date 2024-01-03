@@ -1,4 +1,3 @@
-
 ### English / [简体中文](https://github.com/smdbs-smdbs/jstris-pc-mode-replay-viewer/blob/main/README.zh.md)
 
 <br/>
@@ -17,21 +16,22 @@ As shown in the above image, there are 5 major regions in the viewer:
 
 1. **Replay Region** This region shows the board, queue, and the falling piece before each piece placement.
 
-2. **Side Controls** This region categories PCs in this run to a number from 1-7 as in the [70-piece loop theory](https://docs.google.com/document/d/1udtq235q2SdoFYwMZNu-GRYR-4dCYMkp0E8_Hw1XTyg), __the current PC number__ in this replay, and the __queue__ of Tetriminos that each PC starts with. You can **click** on a specific item to jump to that PC.
+2. **Side Utilities** This region categories PCs in this run to a number from 1-7 as in the [70-piece loop theory](https://docs.google.com/document/d/1udtq235q2SdoFYwMZNu-GRYR-4dCYMkp0E8_Hw1XTyg), **the current PC number** in this replay, and the **queue** of Tetriminos that each PC starts with. You can **click** on a specific item to jump to that PC.
 
-3. **Bottom Controls** This region contains the control buttons for the replay. The button functionalities and their default key bindings are (from left to right):
+3. **Bottom Utilities** This region contains the control buttons for the replay. The button functionalities and their default key bindings are (from left to right):
 
-| Button name |        Functionality        | Key Binding |
-| :---------: | :-------------------------: | :---------: |
-|    Reset    |  **Reset** to the first PC  |      R      |
-|   Back PC   | **Back** to the previous PC |  Arrow Up   |
-| Back Piece  |   **Back** to the last piece   | Arrow Left  |
-| Next Piece  |  **Place** the next piece   | Arrow Right |
-|   Next PC   | **Forward** to the first PC | Arrow Down  |
+| Button name  |        Functionality        | Key Binding |
+| :----------: | :-------------------------: | :---------: |
+|    Reset     |  **Reset** to the first PC  |      R      |
+|   Back PC    | **Back** to the previous PC |  Arrow Up   |
+|  Back Piece  | **Back** to the last piece  | Arrow Left  |
+|  Next Piece  |  **Place** the next piece   | Arrow Right |
+|   Next PC    | **Forward** to the first PC | Arrow Down  |
+| Open Options |  **Open** the options menu  |   (None)    |
 
-> You might have noticed the button in the bottom right corner. It is supposed to open up an options menu, but it has no functionality because I don't know what should be in the options... If you have any idea, welcome to [contribute](#contribute) to this project by opening an issue.
+In the center of the bottom region is a **Page Number Controls**, it shows number of pieces placed in the current PC and the current PC Number. The input box can be used to quickly jump to a specific PC.
 
-4. **Page Number Controls** This region contains number of pieces placed in this PC and the current PC Number. It also contains an input box that you can use to quickly jump to a specific PC.
+4. **PC Utilities** This region contains links to the utilities that might be useful in analyzing a replay.
 
 5. **Upload Region** This region contains two buttons for uploading a replay to this viewer. For more specific instructions, please refer to the [Upload Replay](#upload-replay) section.
 
