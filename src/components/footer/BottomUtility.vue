@@ -51,7 +51,16 @@
     </div>
 
     <!-- Option -->
-    <OptionItem :options="options" />
+    <div>
+      <ButtonIcon class="w-8 h-8" @click="isOptionPopupOpened = true" :title="'Options'">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="inline-block">
+          <path fill="currentColor"
+            d="M232 184a8 8 0 0 1-8 8h-63.06a15.92 15.92 0 0 1-14.31-8.84L95.06 80H32a8 8 0 0 1 0-16h63.06a15.92 15.92 0 0 1 14.31 8.84L160.94 176H224a8 8 0 0 1 8 8M152 80h72a8 8 0 0 0 0-16h-72a8 8 0 0 0 0 16" />
+        </svg>
+      </ButtonIcon>
+
+      <OptionPopup v-if="isOptionPopupOpened" @close-popup="closePopup" :options="optionsMap" />
+    </div>
   </footer>
 </template>
 
@@ -59,7 +68,7 @@
 import { ref, onMounted } from 'vue';
 
 import ButtonIcon from './icons/ButtonIcon.vue';
-import OptionItem from './OptionItem.vue';
+import OptionPopup from './OptionPopup.vue';
 
 defineProps({
   mxPC: Number,
@@ -68,53 +77,43 @@ defineProps({
 
 const emit = defineEmits(['reset', 'openOptions', 'backPiece', 'forwardPiece', 'backPC', 'forwardPC', 'changePage'])
 
-// Key binding
-const options = ref({
-  "R": reset,
-  "ArrowLeft": backPiece,
-  "ArrowRight": forwardPiece,
-  "ArrowUp": backPC,
-  "ArrowDown": forwardPC,
-})
-
-function keyboardListener(e) {
-  if (options.value[e.key]) {
-    options.value[e.key]()
+const keysListener = (event) => {
+  if (keysMap.value[event.key]) {
+    emit(keysMap.value[event.key])
   }
 }
 
 onMounted(() => {
-  document.addEventListener('keydown', keyboardListener)
+  window.addEventListener('keydown', keysListener)
+})
+
+// Option popup
+const isOptionPopupOpened = ref(false)
+function closePopup() {
+  isOptionPopupOpened.value = false
+}
+
+// Key binding
+const optionsMap = ref({
+  "reset": "R",
+  "openOptions": "O",
+  "backPiece": "ArrowLeft",
+  "forwardPiece": "ArrowRight",
+  "backPC": "ArrowUp",
+  "forwardPC": "ArrowDown",
+})
+const keysMap = ref({
+  "R": "reset",
+  "O": "openOptions",
+  "ArrowLeft": "backPiece",
+  "ArrowRight": "forwardPiece",
+  "ArrowUp": "backPC",
+  "ArrowDown": "forwardPC",
 })
 
 // function updateOptions() {
 //   options.value = !options.value
 // }
-
-// Events
-function reset() {
-  emit('reset')
-}
-
-function openOptions() {
-  emit('openOptions')
-}
-
-function backPC() {
-  emit('backPC')
-}
-
-function forwardPC() {
-  emit('forwardPC')
-}
-
-function backPiece() {
-  emit('backPiece')
-}
-
-function forwardPiece() {
-  emit('forwardPiece')
-}
 
 </script>
 

@@ -10,7 +10,7 @@
       @openOptions="openOptions" @backPiece="backPiece" @forwardPiece="forwardPiece" @backPC="backPC"
       @forwardPC="forwardPC" @reset="reset" />
 
-    <PCUtils :button-list="buttonList" @open-solver="openSolver" @open-fumen="openFumen" />
+    <PCUtility :button-list="buttonList" @open-solver="openSolver" @open-fumen="openFumen" />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ import { Field, encoder } from 'tetris-fumen';
 import TetrisBoard from './board/TetrisBoard.vue';
 import sideUtility from './sidebar/SideUtility.vue';
 import BottomUtility from './footer/BottomUtility.vue';
-import PCUtils from './pcutil/PCUtils.vue';
+import PCUtility from './pcutil/PCUtility.vue';
 
 onMounted(() => {
   console.log(props.data.length)
