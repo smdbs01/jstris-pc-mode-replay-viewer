@@ -52,14 +52,15 @@
 
     <!-- Option -->
     <div>
-      <ButtonIcon class="w-8 h-8" @click="isOptionPopupOpened = true" :title="'Options'">
+      <ButtonIcon class="w-8 h-8" @click="openPopup" :title="'Options'">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="inline-block">
           <path fill="currentColor"
             d="M232 184a8 8 0 0 1-8 8h-63.06a15.92 15.92 0 0 1-14.31-8.84L95.06 80H32a8 8 0 0 1 0-16h63.06a15.92 15.92 0 0 1 14.31 8.84L160.94 176H224a8 8 0 0 1 8 8M152 80h72a8 8 0 0 0 0-16h-72a8 8 0 0 0 0 16" />
         </svg>
       </ButtonIcon>
 
-      <OptionPopup v-if="isOptionPopupOpened" @close-popup="closePopup" :options="optionsMap" />
+      <OptionPopup v-if="isOptionPopupOpened" :options="optionsMap" class="z-50" @close-popup="closePopup"
+        @update-option="updateOption" />
     </div>
   </footer>
 </template>
@@ -77,44 +78,69 @@ defineProps({
 
 const emit = defineEmits(['reset', 'openOptions', 'backPiece', 'forwardPiece', 'backPC', 'forwardPC', 'changePage'])
 
-const keysListener = (event) => {
-  if (keysMap.value[event.key]) {
-    emit(keysMap.value[event.key])
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('keydown', keysListener)
-})
-
-// Option popup
-const isOptionPopupOpened = ref(false)
-function closePopup() {
-  isOptionPopupOpened.value = false
-}
-
 // Key binding
 const optionsMap = ref({
-  "reset": "R",
-  "openOptions": "O",
+  "reset": "r",
   "backPiece": "ArrowLeft",
   "forwardPiece": "ArrowRight",
   "backPC": "ArrowUp",
   "forwardPC": "ArrowDown",
 })
 const keysMap = ref({
-  "R": "reset",
-  "O": "openOptions",
+  "r": "reset",
   "ArrowLeft": "backPiece",
   "ArrowRight": "forwardPiece",
   "ArrowUp": "backPC",
   "ArrowDown": "forwardPC",
 })
 
-// function updateOptions() {
-//   options.value = !options.value
-// }
+function updateOption(funcName, keyName) {
+  if (keysMap.value[keyName]) {
+    // key is mapped
+    let oldKeyName = optionsMap.value[funcName]
+    let newFuncName = keysMap.value[keyName]
+    optionsMap.value[newFuncName] = oldKeyName
+    keysMap.value[oldKeyName] = newFuncName
 
+    optionsMap.value[funcName] = keyName
+    keysMap.value[keyName] = funcName
+  } else {
+    delete keysMap.value[optionsMap.value[funcName]]
+
+    optionsMap.value[funcName] = keyName
+    keysMap.value[keyName] = funcName
+  }
+}
+
+const keysListener = (event) => {
+  if (keysMap.value[event.key]) {
+    emit(keysMap.value[event.key])
+  }
+}
+
+function addKeysListener() {
+  document.addEventListener('keydown', keysListener)
+}
+function removeKeysListener() {
+  document.removeEventListener('keydown', keysListener)
+}
+
+onMounted(() => {
+  addKeysListener()
+})
+
+// Option popup
+const isOptionPopupOpened = ref(false)
+function openPopup () {
+  // temporarily disable key bindings
+  removeKeysListener()
+  isOptionPopupOpened.value = true
+}
+function closePopup() {
+  isOptionPopupOpened.value = false
+  // adding them back
+  addKeysListener()
+}
 </script>
 
 <style scoped>
