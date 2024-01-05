@@ -2,7 +2,7 @@
   <div class="mx-4 my-2 flex flex-col items-center bg-gray-800 relative shadow-md">
     <div class="w-[90%] h-[90%] mx-4 mt-4 py-2 flex justify-between items-center overflow-hidden">
       <TetrisBoard class="w-full sm:w-[70%] h-[95%]" :board="board" :queue="queue" :PCLoopIndicator="PCLoopIndicator" />
-      <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0] + 1"
+      <sideUtility :loopArrays="loopArrays" :activeLoop="PCLoopIndicator" :activePage="currentPage[0] + 1" :bad-save-hightlight="additionalFeatures['bad-saves']"
         @change-page="updatePage" />
     </div>
 
@@ -36,8 +36,12 @@ watch(() => props.data.length, () => {
   currentPage.value = [0, 0]
 })
 
+const additionalFeatures = ref({
+  'bad-saves': true
+})
+
 /**
- * Array of 7 types of PC
+ * Side Utility
  */
 const loopArrays = computed(() => {
   const ret = {}

@@ -8,10 +8,10 @@
     <div
       class="w-1/2 min-w-[350px] max-w-[550px] h-1/2 p-4 flex flex-col items-center justify-start text-gray-300 border-2 border-gray-700 bg-gray-800 rounded-md z-10">
       <h1 class="text-2xl font-bold">OPTIONS</h1>
-      <h1 class="text-lg font-semibold mt-2">Key Bindings</h1>
       <!-- Key bindings -->
+      <h1 class="text-lg font-semibold mt-2">Key Bindings</h1>
       <div class="flex flex-col items-start gap-2">
-        <div v-for="(key, funcName) in options" :key="funcName" class="grid grid-cols-2 items-center justify-center">
+        <div v-for="(key, funcName) in keyBindings" :key="funcName" class="grid grid-cols-2 items-center justify-center">
           <div class="text-center">{{ funcNameTable[funcName] }}</div>
           <!-- A key binding-->
           <input class="text-center bg-gray-600 text-teal-300 focus:text-gray-300" spellcheck="false" type="text" tabindex="-1"
@@ -19,7 +19,14 @@
             :value="funcName == currentActiveOption ? 'Press a key' : key" />
         </div>
       </div>
-      <!-- Toggle feature -->
+      <!-- Feature toggle -->
+      <h1 class="text-lg font-semibold mt-2">Feature Toggle</h1>
+      <div class="flex flex-col items-start gap-2">
+        <div v-for="feature in featureList" :key="feature.name" class="flex items-baseline">
+          <div class="text-center mr-4">{{ featureNameTable[feature.name] }}</div>
+          <input type="checkbox" :checked="feature.enabled" @change="emit('toggle-feature', feature.name, $event.target.checked)" />
+        </div>
+      </div>
 
     </div>
   </div>
@@ -28,10 +35,21 @@
 <script setup>
 import { ref } from "vue";
 
-const emit = defineEmits(['close-popup', 'update-option'])
+const emit = defineEmits(['close-popup', 'update-key-binding', 'toggle-feature'])
+
+const featureList = ref([
+  {
+    name: 'bad-saves',
+    enabled: true,
+  }
+])
+
+const featureNameTable = {
+  'bad-saves': 'Bad Saves Indicator',
+}
 
 defineProps({
-  options: Object // { [key: string]: () => void }
+  keyBindings: Object // { [key: string]: () => void }
 })
 
 const funcNameTable = {
@@ -55,7 +73,7 @@ function setKey(e) {
     return
   }
 
-  emit('update-option', currentActiveOption.value, e.key)
+  emit('update-key-binding', currentActiveOption.value, e.key)
   currentActiveOption.value = ''
   e.target.blur()
 }

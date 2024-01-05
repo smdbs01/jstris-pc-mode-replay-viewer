@@ -4,7 +4,7 @@
       <div v-for="loop in Object.keys(loopArrays)" :key="loop" class="w-[80%] max-w-[12rem] mt-3 flex flex-col items-end">
         <PageButton :loop="loop" :isActive="loop == activeLoop" @loopClicked="loopClicked" class="top-0" :class="{ 'sticky': expandedLoops[loop] }"/>
         <PageList v-if="expandedLoops[loop]" :loop="loop" :isActive="loop == activeLoop" :PCArrays="loopArrays[loop]"
-          :activePage="activePage" @pageClicked="$emit('changePage', $event)" />
+          :activePage="activePage" :badSaveHightlight="badSaveHightlight" @pageClicked="$emit('changePage', $event)" />
       </div>
     </div>
 
@@ -19,7 +19,8 @@ import PageList from './PageList.vue';
 const props = defineProps({
   loopArrays: Object,
   activeLoop: Number,
-  activePage: Number
+  activePage: Number,
+  badSaveHightlight: Boolean
 })
 
 const defaultExpanded = {

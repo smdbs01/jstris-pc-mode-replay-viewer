@@ -59,8 +59,8 @@
         </svg>
       </ButtonIcon>
 
-      <OptionPopup v-if="isOptionPopupOpened" :options="optionsMap" class="z-50" @close-popup="closePopup"
-        @update-option="updateOption" />
+      <OptionPopup v-if="isOptionPopupOpened" :key-bindings="keysRevMap" class="z-50" @close-popup="closePopup"
+        @update-key-binding="updateKeyBindings" />
     </div>
   </footer>
 </template>
@@ -79,13 +79,6 @@ defineProps({
 const emit = defineEmits(['reset', 'openOptions', 'backPiece', 'forwardPiece', 'backPC', 'forwardPC', 'changePage'])
 
 // Key binding
-const optionsMap = ref({
-  "reset": "r",
-  "backPiece": "ArrowLeft",
-  "forwardPiece": "ArrowRight",
-  "backPC": "ArrowUp",
-  "forwardPC": "ArrowDown",
-})
 const keysMap = ref({
   "r": "reset",
   "ArrowLeft": "backPiece",
@@ -93,21 +86,28 @@ const keysMap = ref({
   "ArrowUp": "backPC",
   "ArrowDown": "forwardPC",
 })
+const keysRevMap = ref({
+  "reset": "r",
+  "backPiece": "ArrowLeft",
+  "forwardPiece": "ArrowRight",
+  "backPC": "ArrowUp",
+  "forwardPC": "ArrowDown",
+})
 
-function updateOption(funcName, keyName) {
+function updateKeyBindings(funcName, keyName) {
   if (keysMap.value[keyName]) {
     // key is mapped
-    let oldKeyName = optionsMap.value[funcName]
+    let oldKeyName = keysRevMap.value[funcName]
     let newFuncName = keysMap.value[keyName]
-    optionsMap.value[newFuncName] = oldKeyName
+    keysRevMap.value[newFuncName] = oldKeyName
     keysMap.value[oldKeyName] = newFuncName
 
-    optionsMap.value[funcName] = keyName
+    keysRevMap.value[funcName] = keyName
     keysMap.value[keyName] = funcName
   } else {
-    delete keysMap.value[optionsMap.value[funcName]]
+    delete keysMap.value[keysRevMap.value[funcName]]
 
-    optionsMap.value[funcName] = keyName
+    keysRevMap.value[funcName] = keyName
     keysMap.value[keyName] = funcName
   }
 }
